@@ -1,0 +1,20 @@
+$`Kruskall-Wallis test`
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_PD by SampleSite
+Kruskal-Wallis chi-squared = 10.338, df = 2, p-value = 0.00569
+
+
+$`Pairwise comparisons (Wilcox)`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta$faith_PD and alpha_values_meta$SampleSite 
+
+           CLOACA ORAL 
+ORAL       0.016  -    
+TANK WATER 0.020  0.383
+
+P value adjustment method: BH 
+

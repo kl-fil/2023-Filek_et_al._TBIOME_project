@@ -1,0 +1,40 @@
+$HospStatus
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_PD by HospStatus
+Kruskal-Wallis chi-squared = 3.2173, df = 2, p-value = 0.2002
+
+
+$TurtleSex
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_PD by TurtleSex
+Kruskal-Wallis chi-squared = 0.63636, df = 2, p-value = 0.7275
+
+
+$DetSex
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_PD by DetSex
+Kruskal-Wallis chi-squared = 0.25989, df = 1, p-value = 0.6102
+
+
+$AgeRange
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_PD by AgeRange
+Kruskal-Wallis chi-squared = 3.3088, df = 2, p-value = 0.1912
+
+
+$Age2
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_PD by Age2
+Kruskal-Wallis chi-squared = 0.36765, df = 1, p-value = 0.5443
+
+

@@ -1,0 +1,138 @@
+$`faithPD TurtleSex`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$faith_PD and alpha_values_meta_cloaca$TurtleSex 
+
+     FEMALE MALE 
+MALE 0.686  -    
+ND   0.207  0.018
+
+P value adjustment method: BH 
+
+$`faithPD DetSex`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$faith_PD and alpha_values_meta_cloaca$DetSex 
+
+   DETSEX
+ND 0.0068
+
+P value adjustment method: BH 
+
+$`faithPD AgeRange`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$faith_PD and alpha_values_meta_cloaca$AgeRange 
+
+          ADULT JUVENILE
+JUVENILE  0.023 -       
+SUB-ADULT 0.386 1.000   
+
+P value adjustment method: BH 
+
+$`faithPD Age2`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$faith_PD and alpha_values_meta_cloaca$Age2 
+
+          ADULT
+NON-ADULT 0.012
+
+P value adjustment method: BH 
+
+$`shannon TurtleSex`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$shannon_entropy and alpha_values_meta_cloaca$TurtleSex 
+
+     FEMALE MALE 
+MALE 0.886  -    
+ND   0.420  0.031
+
+P value adjustment method: BH 
+
+$`shannon DetSex`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$shannon_entropy and alpha_values_meta_cloaca$DetSex 
+
+   DETSEX
+ND 0.02  
+
+P value adjustment method: BH 
+
+$`shannon AgeRange`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$shannon_entropy and alpha_values_meta_cloaca$AgeRange 
+
+          ADULT JUVENILE
+JUVENILE  0.053 -       
+SUB-ADULT 0.386 0.940   
+
+P value adjustment method: BH 
+
+$`shannon Age2`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$shannon_entropy and alpha_values_meta_cloaca$Age2 
+
+          ADULT
+NON-ADULT 0.022
+
+P value adjustment method: BH 
+
+$`observed TurtleSex`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$observed_features and alpha_values_meta_cloaca$TurtleSex 
+
+     FEMALE MALE  
+MALE 0.8857 -     
+ND   0.1560 0.0044
+
+P value adjustment method: BH 
+
+$`observed DetSex`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$observed_features and alpha_values_meta_cloaca$DetSex 
+
+   DETSEX
+ND 0.0025
+
+P value adjustment method: BH 
+
+$`observed AgeRange`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$observed_features and alpha_values_meta_cloaca$AgeRange 
+
+          ADULT JUVENILE
+JUVENILE  0.014 -       
+SUB-ADULT 0.386 1.000   
+
+P value adjustment method: BH 
+
+$`observed Age2`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_cloaca$observed_features and alpha_values_meta_cloaca$Age2 
+
+          ADULT 
+NON-ADULT 0.0092
+
+P value adjustment method: BH 
+

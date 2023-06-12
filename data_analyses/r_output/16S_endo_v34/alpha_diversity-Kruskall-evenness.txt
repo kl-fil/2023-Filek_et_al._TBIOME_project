@@ -1,0 +1,20 @@
+$`Kruskall-Wallis test`
+
+	Kruskal-Wallis rank sum test
+
+data:  pielou_evenness by SampleSite
+Kruskal-Wallis chi-squared = 10.141, df = 2, p-value = 0.006279
+
+
+$`Pairwise comparisons (Wilcox)`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta$pielou_evenness and alpha_values_meta$SampleSite 
+
+           CLOACA ORAL  
+ORAL       0.2052 -     
+TANK WATER 0.0440 0.0021
+
+P value adjustment method: BH 
+

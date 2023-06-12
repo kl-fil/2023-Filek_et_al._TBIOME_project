@@ -1,0 +1,40 @@
+$HospStatus
+
+	Kruskal-Wallis rank sum test
+
+data:  observed_features by HospStatus
+Kruskal-Wallis chi-squared = 3.7833, df = 2, p-value = 0.1508
+
+
+$TurtleSex
+
+	Kruskal-Wallis rank sum test
+
+data:  observed_features by TurtleSex
+Kruskal-Wallis chi-squared = 1.0889, df = 1, p-value = 0.2967
+
+
+$DetSex
+
+	Kruskal-Wallis rank sum test
+
+data:  observed_features by DetSex
+Kruskal-Wallis chi-squared = 1.0889, df = 1, p-value = 0.2967
+
+
+$AgeRange
+
+	Kruskal-Wallis rank sum test
+
+data:  observed_features by AgeRange
+Kruskal-Wallis chi-squared = 2.0278, df = 2, p-value = 0.3628
+
+
+$Age2
+
+	Kruskal-Wallis rank sum test
+
+data:  observed_features by Age2
+Kruskal-Wallis chi-squared = 1.7778, df = 1, p-value = 0.1824
+
+

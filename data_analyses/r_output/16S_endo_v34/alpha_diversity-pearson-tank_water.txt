@@ -1,0 +1,56 @@
+$`Observed features`
+
+	Pearson's product-moment correlation
+
+data:  CCL and observed_features
+t = 0.8051, df = 6, p-value = 0.4515
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.5031303  0.8335193
+sample estimates:
+      cor 
+0.3122476 
+
+
+$`Faith's PD`
+
+	Pearson's product-moment correlation
+
+data:  CCL and faith_PD
+t = 0.37434, df = 6, p-value = 0.721
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.6195581  0.7734096
+sample estimates:
+      cor 
+0.1510698 
+
+
+$`Shannon's entropy`
+
+	Pearson's product-moment correlation
+
+data:  CCL and shannon_entropy
+t = 0.68971, df = 6, p-value = 0.5162
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.5360122  0.8192399
+sample estimates:
+      cor 
+0.2710338 
+
+
+$`Pielou's evenness`
+
+	Pearson's product-moment correlation
+
+data:  CCL and pielou_evenness
+t = 0.48769, df = 6, p-value = 0.6431
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.5906840  0.7910867
+sample estimates:
+      cor 
+0.1952665 
+
+
