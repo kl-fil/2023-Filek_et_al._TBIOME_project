@@ -1,0 +1,70 @@
+$`Bray-Curtis`
+
+	Pearson's product-moment correlation
+
+data:  CCL and PC1
+t = -4.3215, df = 17, p-value = 0.000463
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.8864255 -0.4011411
+sample estimates:
+       cor 
+-0.7235231 
+
+
+$Jaccard
+
+	Pearson's product-moment correlation
+
+data:  CCL and PC1
+t = -2.8282, df = 17, p-value = 0.01159
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.8113988 -0.1499879
+sample estimates:
+      cor 
+-0.565661 
+
+
+$`unw. UniFrac`
+
+	Pearson's product-moment correlation
+
+data:  CCL and PC1
+t = -2.8027, df = 17, p-value = 0.01224
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.8096424 -0.1449793
+sample estimates:
+       cor 
+-0.5621692 
+
+
+$`w. UniFrac`
+
+	Pearson's product-moment correlation
+
+data:  CCL and PC1
+t = 0.71047, df = 17, p-value = 0.487
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.3081655  0.5793374
+sample estimates:
+      cor 
+0.1698127 
+
+
+$`r. Aitchison`
+
+	Pearson's product-moment correlation
+
+data:  CCL and PC1
+t = -0.42211, df = 16, p-value = 0.6786
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.5451075  0.3805710
+sample estimates:
+       cor 
+-0.1049455 
+
+

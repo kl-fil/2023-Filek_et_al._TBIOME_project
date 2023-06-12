@@ -1,0 +1,213 @@
+$`Bray-Curtis ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = bray_dist_data_clo_v34 ~ TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
+          Df SumOfSqs      R2      F Pr(>F)   
+TurtleSex  2   1.2152 0.15554 1.4735  0.005 **
+Residual  16   6.5980 0.84446                 
+Total     18   7.8133 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`Bray-Curtis Pairwise`
+$parent_call
+[1] "bray_dist_data_clo_v34 ~ TurtleSex , strata = Null , permutations 999"
+
+$ND_vs_FEMALE
+          Df SumOfSqs      R2      F Pr(>F)  
+TurtleSex  1   0.5349 0.08798 1.2541  0.051 .
+Residual  13   5.5445 0.91202                
+Total     14   6.0794 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$ND_vs_MALE
+          Df SumOfSqs      R2    F Pr(>F)   
+TurtleSex  1   0.7080 0.12043 1.78  0.009 **
+Residual  13   5.1708 0.87957               
+Total     14   5.8788 1.00000               
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$FEMALE_vs_MALE
+          Df SumOfSqs      R2      F Pr(>F)
+TurtleSex  1  0.55577 0.18303 1.3442  0.232
+Residual   6  2.48074 0.81697              
+Total      7  3.03651 1.00000              
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`Jaccard ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = jacc_dist_data_clo_v34 ~ TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
+          Df SumOfSqs      R2      F Pr(>F)   
+TurtleSex  2   1.1241 0.14129 1.3163  0.002 **
+Residual  16   6.8320 0.85871                 
+Total     18   7.9561 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`Jaccard Pairwise`
+$parent_call
+[1] "jacc_dist_data_clo_v34 ~ TurtleSex , strata = Null , permutations 999"
+
+$ND_vs_FEMALE
+          Df SumOfSqs      R2      F Pr(>F)  
+TurtleSex  1   0.5323 0.08696 1.2381  0.028 *
+Residual  13   5.5889 0.91304                
+Total     14   6.1212 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$ND_vs_MALE
+          Df SumOfSqs     R2      F Pr(>F)   
+TurtleSex  1   0.6352 0.1042 1.5122  0.008 **
+Residual  13   5.4604 0.8958                 
+Total     14   6.0955 1.0000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$FEMALE_vs_MALE
+          Df SumOfSqs     R2      F Pr(>F)
+TurtleSex  1   0.4807 0.1553 1.1031  0.368
+Residual   6   2.6147 0.8447              
+Total      7   3.0954 1.0000              
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`unw. UniFrac ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = uunif_dist_data_clo_v34 ~ TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
+          Df SumOfSqs      R2     F Pr(>F)   
+TurtleSex  2   0.8664 0.17125 1.653  0.009 **
+Residual  16   4.1930 0.82875                
+Total     18   5.0595 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`unw. UniFrac Pairwise`
+$parent_call
+[1] "uunif_dist_data_clo_v34 ~ TurtleSex , strata = Null , permutations 999"
+
+$ND_vs_FEMALE
+          Df SumOfSqs      R2      F Pr(>F)  
+TurtleSex  1   0.3934 0.10205 1.4774  0.055 .
+Residual  13   3.4615 0.89795                
+Total     14   3.8549 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$ND_vs_MALE
+          Df SumOfSqs      R2      F Pr(>F)   
+TurtleSex  1   0.5587 0.14512 2.2068  0.009 **
+Residual  13   3.2910 0.85488                 
+Total     14   3.8497 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$FEMALE_vs_MALE
+          Df SumOfSqs      R2      F Pr(>F)
+TurtleSex  1  0.27263 0.14302 1.0013  0.445
+Residual   6  1.63358 0.85698              
+Total      7  1.90620 1.00000              
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`w. UniFrac ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = wunif_dist_data_clo_v34 ~ TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
+          Df SumOfSqs      R2      F Pr(>F)   
+TurtleSex  2  0.52129 0.22125 2.2729  0.006 **
+Residual  16  1.83481 0.77875                 
+Total     18  2.35610 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`w. UniFrac Pairwise`
+$parent_call
+[1] "wunif_dist_data_clo_v34 ~ TurtleSex , strata = Null , permutations 999"
+
+$ND_vs_FEMALE
+          Df SumOfSqs      R2      F Pr(>F)  
+TurtleSex  1  0.31686 0.17369 2.7326  0.013 *
+Residual  13  1.50740 0.82631                
+Total     14  1.82426 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$ND_vs_MALE
+          Df SumOfSqs      R2      F Pr(>F)  
+TurtleSex  1   0.1909 0.15451 2.3757  0.028 *
+Residual  13   1.0446 0.84549                
+Total     14   1.2355 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$FEMALE_vs_MALE
+          Df SumOfSqs      R2      F Pr(>F)
+TurtleSex  1  0.28601 0.20377 1.5355  0.175
+Residual   6  1.11760 0.79623              
+Total      7  1.40361 1.00000              
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`r. Aitchison ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = clo_raitch_dist_v34 ~ TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
+          Df SumOfSqs      R2      F Pr(>F)
+TurtleSex  2   2138.8 0.12287 1.1206  0.124
+Residual  16  15269.0 0.87713              
+Total     18  17407.8 1.00000              
+
+$`r. Aitchison Pairwise`
+$parent_call
+[1] "clo_raitch_dist_v34 ~ TurtleSex , strata = Null , permutations 999"
+
+$ND_vs_FEMALE
+          Df SumOfSqs      R2      F Pr(>F)
+TurtleSex  1   1002.7 0.07089 0.9919  0.511
+Residual  13  13141.2 0.92911              
+Total     14  14143.9 1.00000              
+
+$ND_vs_MALE
+          Df SumOfSqs      R2      F Pr(>F)  
+TurtleSex  1   1225.9 0.08562 1.2172  0.089 .
+Residual  13  13092.5 0.91438                
+Total     14  14318.4 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$FEMALE_vs_MALE
+          Df SumOfSqs      R2      F Pr(>F)  
+TurtleSex  1    901.1 0.17311 1.2561  0.078 .
+Residual   6   4304.2 0.82689                
+Total      7   5205.3 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+

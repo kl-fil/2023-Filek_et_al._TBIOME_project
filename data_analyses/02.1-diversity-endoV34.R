@@ -625,11 +625,11 @@ taxonomy_endov34 <- read_qza("qiime2_output/16S_endo_v34_2021/taxonomy/16Sendov3
 # load qiime pca and pcoa results.qza (in_data_16 folder)
 # 16S data loading (from core-metrics-results-merged_16S-0-with-phyla-no-mitochondria-no-chloroplast-filtered-phylogeny )
 # at SeqTry3 folder of 16S analyses
-bray_pcoa <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/bray_curtis_pcoa_results.qza")
-unifrac_pcoa <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/unweighted_unifrac_pcoa_results.qza")
-w_unifrac_pcoa <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/weighted_unifrac_pcoa_results.qza")
-jaccard_pcoa <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/jaccard_pcoa_results.qza")
-rAitch_pca <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode/rPCA-ordination-28000.qza")
+bray_pcoa_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/bray_curtis_pcoa_results.qza")
+unifrac_pcoa_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/unweighted_unifrac_pcoa_results.qza")
+w_unifrac_pcoa_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/weighted_unifrac_pcoa_results.qza")
+jaccard_pcoa_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/jaccard_pcoa_results.qza")
+rAitch_pca_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode/rPCA-ordination-28000.qza")
 
 ##----- PCoA plots
 
@@ -657,7 +657,7 @@ theme_pcoa1 <- theme(
 )
 
 bray1_plot_v34 <-
-bray_pcoa$data$Vectors %>% #<<
+bray_pcoa_v34$data$Vectors %>% #<<
   select(SampleID, PC1, PC2) %>% 
   left_join(metadata_endov34) %>%  #<<
   ggplot(aes(x = PC1, y = PC2)) +
@@ -698,14 +698,14 @@ bray_pcoa$data$Vectors %>% #<<
   guides(fill = guide_legend(byrow = TRUE, direction = "vertical"),
          shape = guide_legend(byrow = TRUE, direction = "vertical")) +
   #scale_y_continuous(breaks = c(-0.2, 0, 0.2)) +
-  xlab(paste("PC1 (", round(100*bray_pcoa$data$ProportionExplained[1],2),"%)")) +  #<<
-  ylab(paste("PC2 (", round(100*bray_pcoa$data$ProportionExplained[2],2),"%)")) +  #<<
+  xlab(paste("PC1 (", round(100*bray_pcoa_v34$data$ProportionExplained[1],2),"%)")) +  #<<
+  ylab(paste("PC2 (", round(100*bray_pcoa_v34$data$ProportionExplained[2],2),"%)")) +  #<<
   theme_pcoa1 + #<< set theme
   labs(subtitle = "Bray-Curtis",
        tag = "a)")
 
-#jacc1_plot_v34 <-
-jaccard_pcoa$data$Vectors %>% #<<
+jacc1_plot_v34 <-
+jaccard_pcoa_v34$data$Vectors %>% #<<
   select(SampleID, PC1, PC2) %>% 
   left_join(metadata_endov34) %>%  #<<
   ggplot(aes(x = PC1, y = PC2)) +
@@ -746,14 +746,14 @@ jaccard_pcoa$data$Vectors %>% #<<
   guides(fill = guide_legend(byrow = TRUE, direction = "vertical"),
          shape = guide_legend(byrow = TRUE, direction = "vertical")) +
   #scale_y_continuous(breaks = c(-0.2, 0, 0.2)) +
-  xlab(paste("PC1 (", round(100*jaccard_pcoa$data$ProportionExplained[1],2),"%)")) +  #<<
-  ylab(paste("PC2 (", round(100*jaccard_pcoa$data$ProportionExplained[2],2),"%)")) +  #<<
+  xlab(paste("PC1 (", round(100*jaccard_pcoa_v34$data$ProportionExplained[1],2),"%)")) +  #<<
+  ylab(paste("PC2 (", round(100*jaccard_pcoa_v34$data$ProportionExplained[2],2),"%)")) +  #<<
   theme_pcoa1 + #<< set theme
   labs(subtitle = "Jaccard",
        tag = "b)")
 
-#unwunifrac1_plot_v34 <-
-unifrac_pcoa$data$Vectors %>% #<<
+unwunifrac1_plot_v34 <-
+unifrac_pcoa_v34$data$Vectors %>% #<<
   select(SampleID, PC1, PC2) %>% 
   left_join(metadata_endov34) %>%  #<<
   ggplot(aes(x = PC1, y = PC2)) +
@@ -794,14 +794,14 @@ unifrac_pcoa$data$Vectors %>% #<<
   guides(fill = guide_legend(byrow = TRUE, direction = "vertical"),
          shape = guide_legend(byrow = TRUE, direction = "vertical")) +
   #scale_y_continuous(breaks = c(-0.2, 0, 0.2)) +
-  xlab(paste("PC1 (", round(100*unifrac_pcoa$data$ProportionExplained[1],2),"%)")) +  #<<
-  ylab(paste("PC2 (", round(100*unifrac_pcoa$data$ProportionExplained[2],2),"%)")) +  #<<
+  xlab(paste("PC1 (", round(100*unifrac_pcoa_v34$data$ProportionExplained[1],2),"%)")) +  #<<
+  ylab(paste("PC2 (", round(100*unifrac_pcoa_v34$data$ProportionExplained[2],2),"%)")) +  #<<
   theme_pcoa1 + #<< set theme
   labs(subtitle = "Unweighted UniFrac",
        tag = "c)")
 
-#wunifrac1_plot_v34 <-
-w_unifrac_pcoa$data$Vectors %>% #<<
+wunifrac1_plot_v34 <-
+w_unifrac_pcoa_v34$data$Vectors %>% #<<
   select(SampleID, PC1, PC2) %>% 
   left_join(metadata_endov34) %>%  #<<
   ggplot(aes(x = PC1, y = PC2)) +
@@ -842,8 +842,8 @@ w_unifrac_pcoa$data$Vectors %>% #<<
   guides(fill = guide_legend(byrow = TRUE, direction = "vertical"),
          shape = guide_legend(byrow = TRUE, direction = "vertical")) +
   #scale_y_continuous(breaks = c(-0.2, 0, 0.2)) +
-  xlab(paste("PC1 (", round(100*w_unifrac_pcoa$data$ProportionExplained[1],2),"%)")) +  #<<
-  ylab(paste("PC2 (", round(100*w_unifrac_pcoa$data$ProportionExplained[2],2),"%)")) +  #<<
+  xlab(paste("PC1 (", round(100*w_unifrac_pcoa_v34$data$ProportionExplained[1],2),"%)")) +  #<<
+  ylab(paste("PC2 (", round(100*w_unifrac_pcoa_v34$data$ProportionExplained[2],2),"%)")) +  #<<
   theme_pcoa1 + #<< set theme
   labs(subtitle = "Weighted UniFrac",
        tag = "d)")
@@ -855,7 +855,7 @@ taxonomy_endov34 <- rename(taxonomy_endov34$data, FeatureID = Feature.ID)
 
 rPCA1_plot_v34 <- 
 ggplot() +
-  # stat_ellipse(data = rAitch_pca$data$Vectors %>% #<<
+  # stat_ellipse(data = rAitch_pca_v34$data$Vectors %>% #<<
   #                left_join(metadata_endov34),
   #              aes(x = PC1, y = PC2, fill = SampleSite, color = SampleSite),
   #              type="norm",
@@ -863,7 +863,7 @@ ggplot() +
   #              alpha = 0.1,
   #              geom = "polygon",
   #              show.legend = FALSE) +
-  geom_segment(data = rAitch_pca$data$Species %>% #<<
+  geom_segment(data = rAitch_pca_v34$data$Species %>% #<<
                  mutate(a = sqrt(PC1^2+PC2^2+PC3^2)) %>% #calculate the distance from the origin
                  slice_max(n = 5, order_by = a) %>% #keep X furthest away points - instead of top_n -- slice_max
                  mutate(PC1=PC1*3, PC2=PC2*3) %>% #scale arrow linearly, i guess it's ok (look at emperor)
@@ -873,7 +873,7 @@ ggplot() +
                arrow = arrow(length = unit(0.2, "cm")),
                color = "gray30") +
   geom_point(
-    data = rAitch_pca$data$Vectors %>% #<<
+    data = rAitch_pca_v34$data$Vectors %>% #<<
       left_join(metadata_endov34), #<<
     aes(
       x = PC1, 
@@ -885,7 +885,7 @@ ggplot() +
     size = 3
   ) +
   geom_point(
-    data = rAitch_pca$data$Vectors %>% #<<
+    data = rAitch_pca_v34$data$Vectors %>% #<<
       left_join(metadata_endov34), #<<
     aes(
       x = PC1, 
@@ -896,7 +896,7 @@ ggplot() +
     color = "gray30",
     fill = "transparent"
   ) +
-  # geom_text_repel(data = rAitch_pca$data$Vectors %>%
+  # geom_text_repel(data = rAitch_pca_v34$data$Vectors %>%
   #                   left_join(metadata_endov34),
   #                 aes(x = PC1, y = PC2, label = TurtleName), size = 1.75) +
   scale_shape_manual(values = c(23, 21, 25), 
@@ -914,7 +914,7 @@ ggplot() +
                      labels = c(CLOACA = "Cloacal",
                                 ORAL = "Oral",
                                 "TANK WATER" = "Tank water")) +
-  geom_label_repel(data = rAitch_pca$data$Species %>% #<<
+  geom_label_repel(data = rAitch_pca_v34$data$Species %>% #<<
                      mutate(a = sqrt(PC1^2+PC2^2+PC3^2)) %>% #calculate the distance from the origin
                      slice_max(n = 5, order_by = a) %>% #keep X furthest away points - instead of top_n -- slice_max
                      mutate(PC1=PC1*3, PC2=PC2*3) %>% #scale arrow linearly, i guess it's ok (look at emperor)
@@ -933,8 +933,8 @@ ggplot() +
                    parse = TRUE) +
   # guides(shape = guide_legend(byrow = TRUE, direction = "vertical", order = 1), 
   #        fill = guide_legend(byrow = TRUE, override.aes=list(shape=21), direction = "vertical", order = 2)) +
-  xlab(paste("PC1 (",round(100*rAitch_pca$data$ProportionExplained[1],2),"%)")) + #<<
-  ylab(paste("PC2 (",round(100*rAitch_pca$data$ProportionExplained[2],2),"%)")) + #<<
+  xlab(paste("PC1 (",round(100*rAitch_pca_v34$data$ProportionExplained[1],2),"%)")) + #<<
+  ylab(paste("PC2 (",round(100*rAitch_pca_v34$data$ProportionExplained[2],2),"%)")) + #<<
   theme_pcoa1 +
   labs(subtitle = NULL,
        tag = "e)")
@@ -944,24 +944,102 @@ PCoA_plots_collected_v34 <- ((bray1_plot_v34 + jacc1_plot_v34) / (unwunifrac1_pl
 rPCA1_plot_v34
 
 ggsave(
+  filename = "r_output/16S_endo_v34/pcoa_plots.pdf",
+  plot = PCoA_plots_collected_v34,
+  device = cairo_pdf,
+  height = 140,
+  width = 160,
+  units = "mm"
+)
+ggsave(
   filename = "r_output/16S_endo_v34/rpca_plot.pdf",
-  #plot = PCoA_plots_collected_v34,
+  plot = rPCA1_plot_v34,
   device = cairo_pdf,
   height = 140,
   width = 160,
   units = "mm"
 )
 
-ggsave(filename = "r_output/16S_endo_v34/rpca_plot_turtlenames.pdf",
-       #plot = rPCA1_plot_v34,
-       device = cairo_pdf,
-       height = 140,
-       width = 160,
-       units = "mm"
-)
+# Pearson's correlation for PC1 values of PC(o)Aa and CCL
+bray_pcoa_clo_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/bray_curtis_pcoa_results.qza")
+unifrac_pcoa_clo_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/unweighted_unifrac_pcoa_results.qza")
+w_unifrac_pcoa_clo_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/weighted_unifrac_pcoa_results.qza")
+jaccard_pcoa_clo_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/jaccard_pcoa_results.qza")
+rAitch_pca_clo_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode-cloacal/rPCA-ordination-28000.qza")
 
-# Pearson and beta vs CCL
-pclo5 <- ggplot(raitch_pcoa_clo$data$Vectors %>%
+betapearson_clo1 <- ggplot(bray_pcoa_clo_v34$data$Vectors %>%
+                             left_join(alpha_values_meta),
+                           aes(
+                             x = CCL, 
+                             y = PC1
+                           )) +
+  geom_smooth(method=lm , fill = "gray80", color="black", se=TRUE) +
+  stat_cor(method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(aes(fill=AgeRange),
+             size = 3,
+             alpha = 0.8,
+             color = "black",
+             shape = 21
+  ) +
+  guides(fill = guide_legend(override.aes=list(shape=21, size = 4)),
+         shape = guide_legend(override.aes=list(size = 4))) +
+  labs(title = "Cloaca - Bray-Curtis~CCL")
+
+betapearson_clo2 <- ggplot(jaccard_pcoa_clo_v34$data$Vectors %>%
+                             left_join(alpha_values_meta),
+                           aes(
+                             x = CCL, 
+                             y = PC1
+                           )) +
+  geom_smooth(method=lm , fill = "gray80", color="black", se=TRUE) +
+  stat_cor(method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(aes(fill=AgeRange),
+             size = 3,
+             alpha = 0.8,
+             color = "black",
+             shape = 21
+  ) +
+  guides(fill = guide_legend(override.aes=list(shape=21, size = 4)),
+         shape = guide_legend(override.aes=list(size = 4))) +
+  labs(title = "Cloaca - Jaccard~CCL")
+
+betapearson_clo3 <- ggplot(unifrac_pcoa_clo_v34$data$Vectors %>%
+                             left_join(alpha_values_meta),
+                           aes(
+                             x = CCL, 
+                             y = PC1
+                           )) +
+  geom_smooth(method=lm , fill = "gray80", color="black", se=TRUE) +
+  stat_cor(method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(aes(fill=AgeRange),
+             size = 3,
+             alpha = 0.8,
+             color = "black",
+             shape = 21
+  ) +
+  guides(fill = guide_legend(override.aes=list(shape=21, size = 4)),
+         shape = guide_legend(override.aes=list(size = 4))) +
+  labs(title = "Cloaca - unw.UniFrac~CCL")
+
+betapearson_clo4 <- ggplot(w_unifrac_pcoa_clo_v34$data$Vectors %>%
+                             left_join(alpha_values_meta),
+                           aes(
+                             x = CCL, 
+                             y = PC1
+                           )) +
+  geom_smooth(method=lm , fill = "gray80", color="black", se=TRUE) +
+  stat_cor(method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(aes(fill=AgeRange),
+             size = 3,
+             alpha = 0.8,
+             color = "black",
+             shape = 21
+  ) +
+  guides(fill = guide_legend(override.aes=list(shape=21, size = 4)),
+         shape = guide_legend(override.aes=list(size = 4))) +
+  labs(title = "Cloaca - w.UniFrac~CCL")
+
+betapearson_clo5 <- ggplot(rAitch_pca_clo_v34$data$Vectors %>%
                   left_join(alpha_values_meta),
                 aes(
                   x = CCL, 
@@ -969,8 +1047,8 @@ pclo5 <- ggplot(raitch_pcoa_clo$data$Vectors %>%
                 )) +
   geom_smooth(method=lm , fill = "gray80", color="black", se=TRUE) +
   stat_cor(method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
-  geom_point(aes(fill=AgeRange, size=CCL),
-             #size = 4,
+  geom_point(aes(fill=AgeRange),
+             size = 3,
              alpha = 0.8,
              color = "black",
              shape = 21
@@ -979,22 +1057,38 @@ pclo5 <- ggplot(raitch_pcoa_clo$data$Vectors %>%
          shape = guide_legend(override.aes=list(size = 4))) +
   labs(title = "Cloaca - r. Aitchison~CCL")
 
-(pclo1 + pclo2+pclo3+pclo4+pclo5) + plot_layout(guides = "collect", ncol = 2)
+pearson_beta_CCL <- (betapearson_clo1+betapearson_clo2+betapearson_clo3+betapearson_clo4+betapearson_clo5) + plot_layout(guides = "collect", ncol = 2)
 
 
-ggsave(filename = "r_output/16S_endo_v34/pearson_pc1s_clo.pdf",
-       #plot = rPCA1_plot,
+ggsave(filename = "r_output/16S_endo_v34/beta_diversity-pearson_pc1CCL-cloaca.pdf",
+       plot = pearson_beta_CCL,
        device = cairo_pdf,
        height = 200,
-       width = 250,
+       width = 200,
        units = "mm"
 )
 
-##----- ADONIS -----
-dir.create(path = "r_output/16S_endo_v34/adonis_stats", recursive = TRUE)
+pearson_corr_beta_clo_CCL <- list()
+pearson_corr_beta_clo_CCL[["Bray-Curtis"]] <- with(bray_pcoa_clo_v34$data$Vectors %>%
+                                                           left_join(alpha_values_meta) %>%
+                                                     filter(SampleSite == "CLOACA"),cor.test(CCL,PC1, method = "pearson"))
+pearson_corr_beta_clo_CCL[["Jaccard"]] <- with(jaccard_pcoa_clo_v34$data$Vectors %>%
+                                                 left_join(alpha_values_meta) %>%
+                                                     filter(SampleSite == "CLOACA"),cor.test(CCL,PC1, method = "pearson"))
+pearson_corr_beta_clo_CCL[["unw. UniFrac"]] <- with(unifrac_pcoa_clo_v34$data$Vectors %>%
+                                                      left_join(alpha_values_meta) %>%
+                                                     filter(SampleSite == "CLOACA"),cor.test(CCL,PC1, method = "pearson"))
+pearson_corr_beta_clo_CCL[["w. UniFrac"]] <- with(w_unifrac_pcoa_clo_v34$data$Vectors %>%
+                                                    left_join(alpha_values_meta) %>%
+                                                     filter(SampleSite == "CLOACA"),cor.test(CCL,PC1, method = "pearson"))
+pearson_corr_beta_clo_CCL[["r. Aitchison"]] <- with(rAitch_pca_clo_v34$data$Vectors %>%
+                                                      left_join(alpha_values_meta) %>%
+                                                     filter(SampleSite == "CLOACA"),cor.test(CCL,PC1, method = "pearson"))
 
-colnames(metadata_endov34)
+capture.output(pearson_corr_beta_clo_CCL, file = "r_output/16S_endo_v34/beta_diversity-pearson-cloaca.txt")
 
+
+##----- ADONIS PERMANOVA -----
 bray_dist_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/bray_curtis_distance_matrix.qza")
 jacc_dist_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/jaccard_distance_matrix.qza")
 uunif_dist_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/unweighted_unifrac_distance_matrix.qza")
@@ -1007,119 +1101,105 @@ uunif_dist_data_v34 <- uunif_dist_v34$data
 wunif_dist_data_v34 <- wunif_dist_v34$data
 raitc_dist_data_v34 <- raitc_dist_v34$data
 ##
-
-adonis_metadata_v34 <- filter(metadata_endov34, !SampleID %in% removed_samples_v34)
 removed_samples_v34 <- c("16SNEGCTRL",
-                     "16S0094O",
-                     "16S0113C",
-                     "16S0118O",
-                     "16S0118W",
-                     "16S0119C",
-                     "16S0092O",
-                     "16S0064O")
+                         "16S0094O",
+                         "16S0113C",
+                         "16S0118O",
+                         "16S0118W",
+                         "16S0119C",
+                         "16S0092O",
+                         "16S0064O")
+adonis_metadata_v34 <- filter(metadata_endov34, !SampleID %in% removed_samples_v34)
+
 # distances and metadata need to be sorted in the same way (in this cae alphabetically)
 adonis_metadata_v34 <- adonis_metadata_v34[order(adonis_metadata_v34$SampleID),]
 
 set.seed(123)
-adonis2(formula = bray_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999, by = "terms")
-adonis2(formula = jacc_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999, by = "terms")
-adonis2(formula = uunif_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999, by = "terms")
-adonis2(formula = wunif_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999, by = "terms")
-adonis2(formula = raitc_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999, by = "terms")
-pairwiseAdonis::pairwise.adonis2(bray_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(jacc_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(uunif_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(wunif_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(raitc_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999)
+adonis_results_v34 <- list()
+adonis_results_v34[["Bray-Curtis ADONIS"]] <- adonis2(formula = bray_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999, by = "terms")
+adonis_results_v34[["Bray-Curtis Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(bray_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999)
+adonis_results_v34[["Jaccard ADONIS"]] <- adonis2(formula = jacc_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999, by = "terms")
+adonis_results_v34[["Jaccard Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(jacc_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999)
+adonis_results_v34[["unw. UniFrac ADONIS"]] <- adonis2(formula = uunif_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999, by = "terms")
+adonis_results_v34[["unw. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(uunif_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999)
+adonis_results_v34[["w. UniFrac ADONIS"]] <- adonis2(formula = wunif_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999, by = "terms")
+adonis_results_v34[["w. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(wunif_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999)
+adonis_results_v34[["r. Aitchison ADONIS"]] <- adonis2(formula = raitc_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999, by = "terms")
+adonis_results_v34[["r. Aitchison Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(raitc_dist_data_v34~SampleSite, data = adonis_metadata_v34, permutations = 999)
+capture.output(adonis_results_v34, file = "r_output/16S_endo_v34/adonis_permanova-all_sample_sites.txt")
 
 #Adonis2 cloaca
-bray_dist_clo <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/bray_curtis_distance_matrix.qza")
-jacc_dist_clo <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/jaccard_distance_matrix.qza")
-uunif_dist_clo <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/unweighted_unifrac_distance_matrix.qza")
-wunif_dist_clo <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/weighted_unifrac_distance_matrix.qza")
-raitc_dist_clo <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode-cloacal/rPCA-matrix-28000.qza")
+bray_dist_clo_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/bray_curtis_distance_matrix.qza")
+jacc_dist_clo_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/jaccard_distance_matrix.qza")
+uunif_dist_clo_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/unweighted_unifrac_distance_matrix.qza")
+wunif_dist_clo_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/weighted_unifrac_distance_matrix.qza")
+raitc_dist_clo_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode-cloacal/rPCA-matrix-28000.qza")
 
-bray_dist_data_clo <- bray_dist_clo$data
-jacc_dist_data_clo <- jacc_dist_clo$data
-uunif_dist_data_clo <- uunif_dist_clo$data
-wunif_dist_data_clo <- wunif_dist_clo$data
-raitc_dist_data_clo <- raitc_dist_clo$data
+bray_dist_data_clo_v34 <- bray_dist_clo_v34$data
+jacc_dist_data_clo_v34 <- jacc_dist_clo_v34$data
+uunif_dist_data_clo_v34 <- uunif_dist_clo_v34$data
+wunif_dist_data_clo_v34 <- wunif_dist_clo_v34$data
+raitc_dist_data_clo_v34 <- raitc_dist_clo_v34$data
 
-removed_samples <- c("16SNEGCTRL",
-                     "16S0094O",
-                     "16S0113C",
-                     "16S0118O",
-                     "16S0118W",
-                     "16S0119C",
-                     "16S0092O",
-                     "16S0064O")
 adonis_metadata_clo <- metadata_endov34 %>%
-  filter(!SampleID %in% removed_samples) %>%
+  filter(!SampleID %in% removed_samples_v34) %>%
   filter(SampleSite == "CLOACA")
+
+# adonis2(formula = raitc_dist_data_clo~HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms") #error, lost sample
+# robust aitchison calculation from raw counts D28000
+clo_table_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-cloacal.qza")
+clo_counts_v34 <- t(clo_table_v34$data)
+clo_raitch_dist_v34 <- vegdist(clo_counts_v34, method = "robust.aitchison")
 
 # distances and metadata need to be sorted in the same way (in this cae alphabetically)
 adonis_metadata_clo <- adonis_metadata_clo[order(adonis_metadata_clo$SampleID),]
 
-adonis2(formula = bray_dist_data_clo~TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
-adonis2(formula = jacc_dist_data_clo~TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
-adonis2(formula = uunif_dist_data_clo~TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
-adonis2(formula = wunif_dist_data_clo~TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
-#adonis2(formula = raitc_dist_data_clo~HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms") #error, lost sample
+adonis_results_v34_clo <- list()
+adonis_results_v34_clo[["Bray-Curtis ADONIS"]] <- adonis2(formula = bray_dist_data_clo_v34~TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo[["Bray-Curtis Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(bray_dist_data_clo_v34~TurtleSex, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo[["Jaccard ADONIS"]] <- adonis2(formula = jacc_dist_data_clo_v34~TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo[["Jaccard Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(jacc_dist_data_clo_v34~TurtleSex, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo[["unw. UniFrac ADONIS"]] <- adonis2(formula = uunif_dist_data_clo_v34~TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo[["unw. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(uunif_dist_data_clo_v34~TurtleSex, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo[["w. UniFrac ADONIS"]] <- adonis2(formula = wunif_dist_data_clo_v34~TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo[["w. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(wunif_dist_data_clo_v34~TurtleSex, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo[["r. Aitchison ADONIS"]] <- adonis2(formula = clo_raitch_dist_v34~TurtleSex, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo[["r. Aitchison Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(clo_raitch_dist_v34~TurtleSex, data = adonis_metadata_clo, permutations = 999)
+capture.output(adonis_results_v34_clo, file = "r_output/16S_endo_v34/adonis_permanova-cloaca-turtle_sex_category.txt")
 
-#aitch from raw counts D28000
-clo_table <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-cloacal.qza")
-clo_counts <- t(clo_table$data)
-clo_raitch_dist <- vegdist(clo_counts, method = "robust.aitchison")
 
-adonis2(formula = clo_raitch_dist~TurtleSex*AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
-pairwiseAdonis::pairwise.adonis2(bray_dist_data_clo~TurtleSex*AgeRange, data = adonis_metadata_clo, permutations = 999)
+# Adonis2 oral for hospitalization status category
+bray_dist_orl_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-oral/bray_curtis_distance_matrix.qza")
+jacc_dist_orl_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-oral/jaccard_distance_matrix.qza")
+uunif_dist_orl_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-oral/unweighted_unifrac_distance_matrix.qza")
+wunif_dist_orl_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-oral/weighted_unifrac_distance_matrix.qza")
+raitc_dist_orl_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode-oral/rPCA-matrix-28000.qza")
 
-pairwiseAdonis::pairwise.adonis2(bray_dist_data_clo~SampleSite, data = adonis_metadata_clo, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(jacc_dist_data_clo~SampleSite, data = adonis_metadata_clo, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(uunif_dist_data_clo~SampleSite, data = adonis_metadata_clo, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(wunif_dist_data_clo~SampleSite, data = adonis_metadata_clo, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(raitc_dist_data_clo~SampleSite, data = adonis_metadata_clo, permutations = 999)
+bray_dist_data_orl_v34 <- bray_dist_orl_v34$data
+jacc_dist_data_orl_v34 <- jacc_dist_orl_v34$data
+uunif_dist_data_orl_v34 <- uunif_dist_orl_v34$data
+wunif_dist_data_orl_v34 <- wunif_dist_orl_v34$data
+raitc_dist_data_orl_v34 <- raitc_dist_orl_v34$data
 
-#Adonis2 oral
-bray_dist_orl <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-oral/bray_curtis_distance_matrix.qza")
-jacc_dist_orl <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-oral/jaccard_distance_matrix.qza")
-uunif_dist_orl <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-oral/unweighted_unifrac_distance_matrix.qza")
-wunif_dist_orl <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-oral/weighted_unifrac_distance_matrix.qza")
-raitc_dist_orl <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode-oral/rPCA-matrix-28000.qza")
-
-bray_dist_data_orl <- bray_dist_orl$data
-jacc_dist_data_orl <- jacc_dist_orl$data
-uunif_dist_data_orl <- uunif_dist_orl$data
-wunif_dist_data_orl <- wunif_dist_orl$data
-raitc_dist_data_orl <- raitc_dist_orl$data
-
-removed_samples <- c("16SNEGCTRL",
-                     "16S0094O",
-                     "16S0113C",
-                     "16S0118O",
-                     "16S0118W",
-                     "16S0119C",
-                     "16S0092O",
-                     "16S0064O")
 adonis_metadata_orl <- metadata_endov34 %>%
-  filter(!SampleID %in% removed_samples) %>%
+  filter(!SampleID %in% removed_samples_v34) %>%
   filter(SampleSite == "ORAL")
 
 # distances and metadata need to be sorted in the same way (in this cae alphabetically)
 adonis_metadata_orl <- adonis_metadata_orl[order(adonis_metadata_orl$SampleID),]
 
-adonis2(formula = bray_dist_data_orl~HospStatus, data = adonis_metadata_orl, permutations = 999, by = "terms")
-adonis2(formula = jacc_dist_data_orl~HospStatus, data = adonis_metadata_orl, permutations = 999, by = "terms")
-adonis2(formula = uunif_dist_data_orl~HospStatus, data = adonis_metadata_orl, permutations = 999, by = "terms")
-adonis2(formula = wunif_dist_data_orl~HospStatus, data = adonis_metadata_orl, permutations = 999, by = "terms")
-adonis2(formula = raitc_dist_data_orl~HospStatus, data = adonis_metadata_orl, permutations = 999, by = "terms") 
-
-pairwiseAdonis::pairwise.adonis2(bray_dist_data_orl~HospStatus, data = adonis_metadata_orl, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(jacc_dist_data_orl~HospStatus, data = adonis_metadata_orl, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(uunif_dist_data_orl~HospStatus, data = adonis_metadata_orl, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(wunif_dist_data_orl~HospStatus, data = adonis_metadata_orl, permutations = 999)
-pairwiseAdonis::pairwise.adonis2(raitc_dist_data_orl~HospStatus, data = adonis_metadata_orl, permutations = 999)
-
+adonis_results_v34_orl <- list()
+adonis_results_v34_orl[["Bray-Curtis ADONIS"]] <- adonis2(formula = bray_dist_data_orl_v34~HospStatus, data = adonis_metadata_orl, permutations = 999, by = "terms")
+adonis_results_v34_orl[["Bray-Curtis Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(bray_dist_data_orl_v34~HospStatus, data = adonis_metadata_orl, permutations = 999)
+adonis_results_v34_orl[["Jaccard ADONIS"]] <- adonis2(formula = jacc_dist_data_orl_v34~HospStatus, data = adonis_metadata_orl, permutations = 999, by = "terms")
+adonis_results_v34_orl[["Jaccard Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(jacc_dist_data_orl_v34~HospStatus, data = adonis_metadata_orl, permutations = 999)
+adonis_results_v34_orl[["unw. UniFrac ADONIS"]] <- adonis2(formula = uunif_dist_data_orl_v34~HospStatus, data = adonis_metadata_orl, permutations = 999, by = "terms")
+adonis_results_v34_orl[["unw. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(uunif_dist_data_orl_v34~HospStatus, data = adonis_metadata_orl, permutations = 999)
+adonis_results_v34_orl[["w. UniFrac ADONIS"]] <- adonis2(formula = wunif_dist_data_orl_v34~HospStatus, data = adonis_metadata_orl, permutations = 999, by = "terms")
+adonis_results_v34_orl[["w. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(wunif_dist_data_orl_v34~HospStatus, data = adonis_metadata_orl, permutations = 999)
+adonis_results_v34_orl[["r. Aitchison ADONIS"]] <- adonis2(formula = raitc_dist_data_orl_v34~HospStatus, data = adonis_metadata_orl, permutations = 999, by = "terms")
+adonis_results_v34_orl[["r. Aitchison Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(raitc_dist_data_orl_v34~HospStatus, data = adonis_metadata_orl, permutations = 999)
+capture.output(adonis_results_v34_orl, file = "r_output/16S_endo_v34/adonis_permanova-oral-turtle_hosp_status_category.txt")
 
 #----- Plots for publication
 # Define themes
@@ -1287,7 +1367,7 @@ pears_sha_clo_pub2 <- alpha_values_meta %>%
 # robust Aitchison (DEICODE) PCA plot
 rPCA1_plot_pub2 <- 
   ggplot() +
-  geom_segment(data = rAitch_pca$data$Species %>% #<<
+  geom_segment(data = rAitch_pca_v34$data$Species %>% #<<
                  mutate(a = sqrt(PC1^2+PC2^2+PC3^2)) %>% #calculate the distance from the origin
                  slice_max(n = 5, order_by = a) %>% #keep X furthest away points - instead of top_n -- slice_max
                  mutate(PC1=PC1*3, PC2=PC2*3) %>% #scale arrow linearly (look at emperor qiime vizualisation)
@@ -1297,7 +1377,7 @@ rPCA1_plot_pub2 <-
                arrow = arrow(length = unit(0.2, "cm")),
                color = "gray30") +
   geom_point(
-    data = rAitch_pca$data$Vectors %>% #<<
+    data = rAitch_pca_v34$data$Vectors %>% #<<
       left_join(metadata_endov34), #<<
     aes(
       x = PC1, 
@@ -1309,7 +1389,7 @@ rPCA1_plot_pub2 <-
     size = 3
   ) +
   geom_point(
-    data = rAitch_pca$data$Vectors %>% #<<
+    data = rAitch_pca_v34$data$Vectors %>% #<<
       left_join(metadata_endov34), #<<
     aes(
       x = PC1, 
@@ -1320,7 +1400,7 @@ rPCA1_plot_pub2 <-
     color = "black",
     fill = "transparent"
   ) +
-  # geom_text_repel(data = rAitch_pca$data$Vectors %>%
+  # geom_text_repel(data = rAitch_pca_v34$data$Vectors %>%
   #                   left_join(metadata_endov34),
   #                 aes(x = PC1, y = PC2, label = TurtleName), size = 1.75) +
   scale_shape_manual(values = c(23, 21, 25), 
@@ -1338,7 +1418,7 @@ rPCA1_plot_pub2 <-
                      labels = c(CLOACA = "Cloacal",
                                 ORAL = "Oral",
                                 "TANK WATER" = "Tank water")) +
-  geom_label_repel(data = rAitch_pca$data$Species %>% #<<
+  geom_label_repel(data = rAitch_pca_v34$data$Species %>% #<<
                      mutate(a = sqrt(PC1^2+PC2^2+PC3^2)) %>% #calculate the distance from the origin
                      slice_max(n = 5, order_by = a) %>% #keep X furthest away points - instead of top_n -- slice_max
                      mutate(PC1=PC1*3, PC2=PC2*3) %>% #scale arrow linearly, i guess it's ok (look at emperor)
@@ -1357,8 +1437,8 @@ rPCA1_plot_pub2 <-
                    parse = TRUE) +
   # guides(shape = guide_legend(byrow = TRUE, direction = "vertical", order = 1), 
   #        fill = guide_legend(byrow = TRUE, override.aes=list(shape=21), direction = "vertical", order = 2)) +
-  xlab(paste("PC1 (",round(100*rAitch_pca$data$ProportionExplained[1],2),"%)")) + #<<
-  ylab(paste("PC2 (",round(100*rAitch_pca$data$ProportionExplained[2],2),"%)")) + #<<
+  xlab(paste("PC1 (",round(100*rAitch_pca_v34$data$ProportionExplained[1],2),"%)")) + #<<
+  ylab(paste("PC2 (",round(100*rAitch_pca_v34$data$ProportionExplained[2],2),"%)")) + #<<
   theme_pcoa1_pub +
   labs(subtitle = NULL,
        tag = "d)")
@@ -1366,7 +1446,7 @@ rPCA1_plot_pub2 <-
 rPCA1_plot22 <-rPCA1_plot_pub2 + theme(legend.position = c(0.8, 0.8),
                         legend.box.background = element_rect(linetype = 3, linewidth = 1))
 
-faith_alpha_rain_pub+shannon_alpha_rain_pub +
+pubfig_endo <- faith_alpha_rain_pub+shannon_alpha_rain_pub +
   pears_sha_clo_pub2 + rPCA1_plot22 + 
   plot_layout(design = "
                        ABDDD
@@ -1374,10 +1454,12 @@ faith_alpha_rain_pub+shannon_alpha_rain_pub +
                        ")
 
 ggsave("r_output/16S_endo_v34/fig2_pub.pdf",
+       plot = pubfig_endo,
        device=cairo_pdf,
        height = 120,
        width = 220,
        units = "mm")
 
 #----- Session info -----
-sessionInfo()
+sessioninfo <- sessionInfo()
+capture.output(sessioninfo, file = "r_output/16S_endo_v34/sessioninfo.txt")
