@@ -12,8 +12,7 @@ library(ggrepel) #repel text/labels v0.9.3
 library(ggforce) #v0.4.1
 library(ggtext) #v0.1.2
 library(vegan) #v2.6-4
-library(pairwiseAdonis) # ???
-library(ggpubr) #0.6.0
+library(pairwiseAdonis) #v0.4.1
 
 #set global theme for ggplot
 theme_set(theme_light(base_size = 11, base_family = "Arial")) #<< font!
@@ -303,6 +302,7 @@ summary_stats_alpha_v34[["Shannon entropy"]] <- shannon_summarystats_v34
 summary_stats_alpha_v34[["Pielou evenness"]] <- evenness_summarystats_v34
 
 write_tsv(do.call(cbind, summary_stats_alpha_v34), "r_output/16S_endo_v34/alpha_diversity_summary_stats.tsv")
+capture.output(summary_stats_alpha_v34, file = "r_output/16S_endo_v34/alpha_diversity_summary_stats.txt")
 
 ##---- Kruskall-Wallis test & pairwise comparisons (Wilcox)
 krustats_obs_v34 <- list()
@@ -329,63 +329,199 @@ krustats_even_v34[["Pairwise comparisons (Wilcox)"]] <- pairwise.wilcox.test(alp
                                                                              p.adjust.method = "BH")
 capture.output(krustats_even_v34, file = "r_output/16S_endo_v34/alpha_diversity-Kruskall-evenness.txt")
 
+
 ##----- Kruskal-Wallis test per sample sites -----
 
 # Cloacal samples
 kruskall_cloaca <- list()
-kruskall_cloaca[["HospStatus"]] <- kruskal.test(faith_PD ~ HospStatus, 
+kruskall_cloaca[["Observed features-HospStatus"]] <- kruskal.test(observed_features ~ HospStatus, 
                                                 data = alpha_values_meta %>%
                                                   filter(SampleSite == "CLOACA"))
-kruskall_cloaca[["TurtleSex"]] <- kruskal.test(faith_PD ~ TurtleSex, 
+kruskall_cloaca[["Observed features-TurtleSex"]] <- kruskal.test(observed_features ~ TurtleSex, 
                                                data = alpha_values_meta %>% 
                                                  filter(SampleSite == "CLOACA"))
-kruskall_cloaca[["DetSex"]] <- kruskal.test(faith_PD ~ DetSex, 
+kruskall_cloaca[["Observed features-DetSex"]] <- kruskal.test(observed_features ~ DetSex, 
                                             data = alpha_values_meta %>%
                                               filter(SampleSite == "CLOACA"))
-kruskall_cloaca[["AgeRange"]] <- kruskal.test(faith_PD ~ AgeRange, 
+kruskall_cloaca[["Observed features-AgeRange"]] <- kruskal.test(observed_features ~ AgeRange, 
                                               data = alpha_values_meta %>%
                                                 filter(SampleSite == "CLOACA"))
-kruskall_cloaca[["Age2"]] <- kruskal.test(faith_PD ~ Age2, 
+kruskall_cloaca[["Observed features-Age2"]] <- kruskal.test(observed_features ~ Age2, 
                                           data = alpha_values_meta %>%
                                             filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Faith's PD-HospStatus"]] <- kruskal.test(faith_PD ~ HospStatus, 
+                                                data = alpha_values_meta %>%
+                                                  filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Faith's PD-TurtleSex"]] <- kruskal.test(faith_PD ~ TurtleSex, 
+                                               data = alpha_values_meta %>% 
+                                                 filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Faith's PD-DetSex"]] <- kruskal.test(faith_PD ~ DetSex, 
+                                            data = alpha_values_meta %>%
+                                              filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Faith's PD-AgeRange"]] <- kruskal.test(faith_PD ~ AgeRange, 
+                                              data = alpha_values_meta %>%
+                                                filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Faith's PD-Age2"]] <- kruskal.test(faith_PD ~ Age2, 
+                                          data = alpha_values_meta %>%
+                                            filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Shannon-HospStatus"]] <- kruskal.test(shannon_entropy ~ HospStatus, 
+                                                           data = alpha_values_meta %>%
+                                                             filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Shannon-TurtleSex"]] <- kruskal.test(shannon_entropy ~ TurtleSex, 
+                                                          data = alpha_values_meta %>% 
+                                                            filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Shannon-DetSex"]] <- kruskal.test(shannon_entropy ~ DetSex, 
+                                                       data = alpha_values_meta %>%
+                                                         filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Shannon-AgeRange"]] <- kruskal.test(shannon_entropy ~ AgeRange, 
+                                                         data = alpha_values_meta %>%
+                                                           filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Shannon-Age2"]] <- kruskal.test(shannon_entropy ~ Age2, 
+                                                     data = alpha_values_meta %>%
+                                                       filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Evenness-HospStatus"]] <- kruskal.test(pielou_evenness ~ HospStatus, 
+                                                           data = alpha_values_meta %>%
+                                                             filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Evenness-TurtleSex"]] <- kruskal.test(pielou_evenness ~ TurtleSex, 
+                                                          data = alpha_values_meta %>% 
+                                                            filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Evenness-DetSex"]] <- kruskal.test(pielou_evenness ~ DetSex, 
+                                                       data = alpha_values_meta %>%
+                                                         filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Faith's PD-AgeRange"]] <- kruskal.test(pielou_evenness ~ AgeRange, 
+                                                         data = alpha_values_meta %>%
+                                                           filter(SampleSite == "CLOACA"))
+kruskall_cloaca[["Evenness-Age2"]] <- kruskal.test(pielou_evenness ~ Age2, 
+                                                     data = alpha_values_meta %>%
+                                                       filter(SampleSite == "CLOACA"))
 capture.output(kruskall_cloaca, file = "r_output/16S_endo_v34/alpha_diversity-Kruskall-cloaca.txt")
 
 # Oral samples
 kruskall_oral <- list()
-kruskall_oral[["HospStatus"]] <- kruskal.test(faith_PD ~ HospStatus, 
-                                              data = alpha_values_meta %>%
-                                                filter(SampleSite == "ORAL"))
-kruskall_oral[["TurtleSex"]] <- kruskal.test(faith_PD ~ TurtleSex, 
-                                             data = alpha_values_meta %>% 
-                                               filter(SampleSite == "ORAL"))
-kruskall_oral[["DetSex"]] <- kruskal.test(faith_PD ~ DetSex, 
-                                          data = alpha_values_meta %>%
-                                            filter(SampleSite == "ORAL"))
-kruskall_oral[["AgeRange"]] <- kruskal.test(faith_PD ~ AgeRange, 
-                                            data = alpha_values_meta %>%
-                                              filter(SampleSite == "ORAL"))
-kruskall_oral[["Age2"]] <- kruskal.test(faith_PD ~ Age2, 
-                                        data = alpha_values_meta %>%
-                                          filter(SampleSite == "ORAL"))
+kruskall_oral[["Observed features-HospStatus"]] <- kruskal.test(observed_features ~ HospStatus, 
+                                                                  data = alpha_values_meta %>%
+                                                                    filter(SampleSite == "ORAL"))
+kruskall_oral[["Observed features-TurtleSex"]] <- kruskal.test(observed_features ~ TurtleSex, 
+                                                                 data = alpha_values_meta %>% 
+                                                                   filter(SampleSite == "ORAL"))
+kruskall_oral[["Observed features-DetSex"]] <- kruskal.test(observed_features ~ DetSex, 
+                                                              data = alpha_values_meta %>%
+                                                                filter(SampleSite == "ORAL"))
+kruskall_oral[["Observed features-AgeRange"]] <- kruskal.test(observed_features ~ AgeRange, 
+                                                                data = alpha_values_meta %>%
+                                                                  filter(SampleSite == "ORAL"))
+kruskall_oral[["Observed features-Age2"]] <- kruskal.test(observed_features ~ Age2, 
+                                                            data = alpha_values_meta %>%
+                                                              filter(SampleSite == "ORAL"))
+kruskall_oral[["Faith's PD-HospStatus"]] <- kruskal.test(faith_PD ~ HospStatus, 
+                                                           data = alpha_values_meta %>%
+                                                             filter(SampleSite == "ORAL"))
+kruskall_oral[["Faith's PD-TurtleSex"]] <- kruskal.test(faith_PD ~ TurtleSex, 
+                                                          data = alpha_values_meta %>% 
+                                                            filter(SampleSite == "ORAL"))
+kruskall_oral[["Faith's PD-DetSex"]] <- kruskal.test(faith_PD ~ DetSex, 
+                                                       data = alpha_values_meta %>%
+                                                         filter(SampleSite == "ORAL"))
+kruskall_oral[["Faith's PD-AgeRange"]] <- kruskal.test(faith_PD ~ AgeRange, 
+                                                         data = alpha_values_meta %>%
+                                                           filter(SampleSite == "ORAL"))
+kruskall_oral[["Faith's PD-Age2"]] <- kruskal.test(faith_PD ~ Age2, 
+                                                     data = alpha_values_meta %>%
+                                                       filter(SampleSite == "ORAL"))
+kruskall_oral[["Shannon-HospStatus"]] <- kruskal.test(shannon_entropy ~ HospStatus, 
+                                                        data = alpha_values_meta %>%
+                                                          filter(SampleSite == "ORAL"))
+kruskall_oral[["Shannon-TurtleSex"]] <- kruskal.test(shannon_entropy ~ TurtleSex, 
+                                                       data = alpha_values_meta %>% 
+                                                         filter(SampleSite == "ORAL"))
+kruskall_oral[["Shannon-DetSex"]] <- kruskal.test(shannon_entropy ~ DetSex, 
+                                                    data = alpha_values_meta %>%
+                                                      filter(SampleSite == "ORAL"))
+kruskall_oral[["Shannon-AgeRange"]] <- kruskal.test(shannon_entropy ~ AgeRange, 
+                                                      data = alpha_values_meta %>%
+                                                        filter(SampleSite == "ORAL"))
+kruskall_oral[["Shannon-Age2"]] <- kruskal.test(shannon_entropy ~ Age2, 
+                                                  data = alpha_values_meta %>%
+                                                    filter(SampleSite == "ORAL"))
+kruskall_oral[["Evenness-HospStatus"]] <- kruskal.test(pielou_evenness ~ HospStatus, 
+                                                         data = alpha_values_meta %>%
+                                                           filter(SampleSite == "ORAL"))
+kruskall_oral[["Evenness-TurtleSex"]] <- kruskal.test(pielou_evenness ~ TurtleSex, 
+                                                        data = alpha_values_meta %>% 
+                                                          filter(SampleSite == "ORAL"))
+kruskall_oral[["Evenness-DetSex"]] <- kruskal.test(pielou_evenness ~ DetSex, 
+                                                     data = alpha_values_meta %>%
+                                                       filter(SampleSite == "ORAL"))
+kruskall_oral[["Faith's PD-AgeRange"]] <- kruskal.test(pielou_evenness ~ AgeRange, 
+                                                         data = alpha_values_meta %>%
+                                                           filter(SampleSite == "ORAL"))
+kruskall_oral[["Evenness-Age2"]] <- kruskal.test(pielou_evenness ~ Age2, 
+                                                   data = alpha_values_meta %>%
+                                                     filter(SampleSite == "ORAL"))
 capture.output(kruskall_oral, file = "r_output/16S_endo_v34/alpha_diversity-Kruskall-oral.txt")
 
 # Tank water samples
 kruskall_wtr <- list()
-kruskall_wtr[["HospStatus"]] <- kruskal.test(observed_features ~ HospStatus, 
-                                             data = alpha_values_meta %>%
-                                               filter(SampleSite == "TANK WATER"))
-kruskall_wtr[["TurtleSex"]] <- kruskal.test(observed_features ~ TurtleSex, 
-                                            data = alpha_values_meta %>% 
-                                              filter(SampleSite == "TANK WATER"))
-kruskall_wtr[["DetSex"]] <- kruskal.test(observed_features ~ DetSex, 
-                                         data = alpha_values_meta %>%
-                                           filter(SampleSite == "TANK WATER"))
-kruskall_wtr[["AgeRange"]] <- kruskal.test(observed_features ~ AgeRange, 
-                                           data = alpha_values_meta %>%
-                                             filter(SampleSite == "TANK WATER"))
-kruskall_wtr[["Age2"]] <- kruskal.test(observed_features ~ Age2, 
-                                       data = alpha_values_meta %>%
-                                         filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Observed features-HospStatus"]] <- kruskal.test(observed_features ~ HospStatus, 
+                                                                data = alpha_values_meta %>%
+                                                                  filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Observed features-TurtleSex"]] <- kruskal.test(observed_features ~ TurtleSex, 
+                                                               data = alpha_values_meta %>% 
+                                                                 filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Observed features-DetSex"]] <- kruskal.test(observed_features ~ DetSex, 
+                                                            data = alpha_values_meta %>%
+                                                              filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Observed features-AgeRange"]] <- kruskal.test(observed_features ~ AgeRange, 
+                                                              data = alpha_values_meta %>%
+                                                                filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Observed features-Age2"]] <- kruskal.test(observed_features ~ Age2, 
+                                                          data = alpha_values_meta %>%
+                                                            filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Faith's PD-HospStatus"]] <- kruskal.test(faith_PD ~ HospStatus, 
+                                                         data = alpha_values_meta %>%
+                                                           filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Faith's PD-TurtleSex"]] <- kruskal.test(faith_PD ~ TurtleSex, 
+                                                        data = alpha_values_meta %>% 
+                                                          filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Faith's PD-DetSex"]] <- kruskal.test(faith_PD ~ DetSex, 
+                                                     data = alpha_values_meta %>%
+                                                       filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Faith's PD-AgeRange"]] <- kruskal.test(faith_PD ~ AgeRange, 
+                                                       data = alpha_values_meta %>%
+                                                         filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Faith's PD-Age2"]] <- kruskal.test(faith_PD ~ Age2, 
+                                                   data = alpha_values_meta %>%
+                                                     filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Shannon-HospStatus"]] <- kruskal.test(shannon_entropy ~ HospStatus, 
+                                                      data = alpha_values_meta %>%
+                                                        filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Shannon-TurtleSex"]] <- kruskal.test(shannon_entropy ~ TurtleSex, 
+                                                     data = alpha_values_meta %>% 
+                                                       filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Shannon-DetSex"]] <- kruskal.test(shannon_entropy ~ DetSex, 
+                                                  data = alpha_values_meta %>%
+                                                    filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Shannon-AgeRange"]] <- kruskal.test(shannon_entropy ~ AgeRange, 
+                                                    data = alpha_values_meta %>%
+                                                      filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Shannon-Age2"]] <- kruskal.test(shannon_entropy ~ Age2, 
+                                                data = alpha_values_meta %>%
+                                                  filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Evenness-HospStatus"]] <- kruskal.test(pielou_evenness ~ HospStatus, 
+                                                       data = alpha_values_meta %>%
+                                                         filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Evenness-TurtleSex"]] <- kruskal.test(pielou_evenness ~ TurtleSex, 
+                                                      data = alpha_values_meta %>% 
+                                                        filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Evenness-DetSex"]] <- kruskal.test(pielou_evenness ~ DetSex, 
+                                                   data = alpha_values_meta %>%
+                                                     filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Faith's PD-AgeRange"]] <- kruskal.test(pielou_evenness ~ AgeRange, 
+                                                       data = alpha_values_meta %>%
+                                                         filter(SampleSite == "TANK WATER"))
+kruskall_wtr[["Evenness-Age2"]] <- kruskal.test(pielou_evenness ~ Age2, 
+                                                 data = alpha_values_meta %>%
+                                                   filter(SampleSite == "TANK WATER"))
 capture.output(kruskall_wtr, file = "r_output/16S_endo_v34/alpha_diversity-Kruskall-tank_water.txt")
 
 ## Pairwise for interesting categories
@@ -622,9 +758,9 @@ capture.output(pearson_corr_tw, file = "r_output/16S_endo_v34/alpha_diversity-pe
 taxonomy_endov34 <- read_qza("qiime2_output/16S_endo_v34_2021/taxonomy/16Sendov34_taxonomy_silva_138_v34.qza")
 
 ##----- Load data from qiime2 qza to R for PCoA/PCA plots
-# load qiime pca and pcoa results.qza (in_data_16 folder)
+# load qiime pca and pcoa results.qza 
 # 16S data loading (from core-metrics-results-merged_16S-0-with-phyla-no-mitochondria-no-chloroplast-filtered-phylogeny )
-# at SeqTry3 folder of 16S analyses
+
 bray_pcoa_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/bray_curtis_pcoa_results.qza")
 unifrac_pcoa_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/unweighted_unifrac_pcoa_results.qza")
 w_unifrac_pcoa_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/weighted_unifrac_pcoa_results.qza")

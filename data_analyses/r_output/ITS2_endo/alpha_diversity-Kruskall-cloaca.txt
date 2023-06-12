@@ -1,0 +1,160 @@
+$HospStatus_faith
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_pd by HospStatus
+Kruskal-Wallis chi-squared = 1.3112, df = 2, p-value = 0.5191
+
+
+$TurtleSex_faith
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_pd by TurtleSex
+Kruskal-Wallis chi-squared = 2.8551, df = 2, p-value = 0.2399
+
+
+$DetSex_faith
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_pd by DetSex
+Kruskal-Wallis chi-squared = 1.5077, df = 1, p-value = 0.2195
+
+
+$AgeRange_faith
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_pd by AgeRange
+Kruskal-Wallis chi-squared = 1.7305, df = 2, p-value = 0.4209
+
+
+$Age2_faith
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_pd by Age2
+Kruskal-Wallis chi-squared = 1.4486, df = 1, p-value = 0.2288
+
+
+$HospStatus_observed
+
+	Kruskal-Wallis rank sum test
+
+data:  observed_features by HospStatus
+Kruskal-Wallis chi-squared = 0.52844, df = 2, p-value = 0.7678
+
+
+$TurtleSex_observed
+
+	Kruskal-Wallis rank sum test
+
+data:  observed_features by TurtleSex
+Kruskal-Wallis chi-squared = 3.4611, df = 2, p-value = 0.1772
+
+
+$DetSex_observed
+
+	Kruskal-Wallis rank sum test
+
+data:  observed_features by DetSex
+Kruskal-Wallis chi-squared = 3.2384, df = 1, p-value = 0.07193
+
+
+$AgeRange_observed
+
+	Kruskal-Wallis rank sum test
+
+data:  observed_features by AgeRange
+Kruskal-Wallis chi-squared = 2.5659, df = 2, p-value = 0.2772
+
+
+$Age2_observed
+
+	Kruskal-Wallis rank sum test
+
+data:  observed_features by Age2
+Kruskal-Wallis chi-squared = 2.4815, df = 1, p-value = 0.1152
+
+
+$HospStatus_shannon
+
+	Kruskal-Wallis rank sum test
+
+data:  shannon_entropy by HospStatus
+Kruskal-Wallis chi-squared = 0.49809, df = 2, p-value = 0.7795
+
+
+$TurtleSex_shannon
+
+	Kruskal-Wallis rank sum test
+
+data:  shannon_entropy by TurtleSex
+Kruskal-Wallis chi-squared = 4.0291, df = 2, p-value = 0.1334
+
+
+$DetSex_shannon
+
+	Kruskal-Wallis rank sum test
+
+data:  shannon_entropy by DetSex
+Kruskal-Wallis chi-squared = 3.3923, df = 1, p-value = 0.0655
+
+
+$AgeRange_shannon
+
+	Kruskal-Wallis rank sum test
+
+data:  shannon_entropy by AgeRange
+Kruskal-Wallis chi-squared = 2.6288, df = 2, p-value = 0.2686
+
+
+$Age2_shannon
+
+	Kruskal-Wallis rank sum test
+
+data:  shannon_entropy by Age2
+Kruskal-Wallis chi-squared = 2.4771, df = 1, p-value = 0.1155
+
+
+$HospStatus_evenness
+
+	Kruskal-Wallis rank sum test
+
+data:  pielou_evenness by HospStatus
+Kruskal-Wallis chi-squared = 0.17225, df = 2, p-value = 0.9175
+
+
+$TurtleSex_evenness
+
+	Kruskal-Wallis rank sum test
+
+data:  pielou_evenness by TurtleSex
+Kruskal-Wallis chi-squared = 3.7441, df = 2, p-value = 0.1538
+
+
+$DetSex_evenness
+
+	Kruskal-Wallis rank sum test
+
+data:  pielou_evenness by DetSex
+Kruskal-Wallis chi-squared = 2.2231, df = 1, p-value = 0.136
+
+
+$AgeRange_evenness
+
+	Kruskal-Wallis rank sum test
+
+data:  pielou_evenness by AgeRange
+Kruskal-Wallis chi-squared = 0.86035, df = 2, p-value = 0.6504
+
+
+$Age2_evenness
+
+	Kruskal-Wallis rank sum test
+
+data:  pielou_evenness by Age2
+Kruskal-Wallis chi-squared = 0.85714, df = 1, p-value = 0.3545
+
+

@@ -1,0 +1,21 @@
+$`Kruskall-Wallis test`
+
+	Kruskal-Wallis rank sum test
+
+data:  shannon_entropy by SampleSite
+Kruskal-Wallis chi-squared = 9.4105, df = 3, p-value = 0.0243
+
+
+$`Pairwise comparisons (Wilcox)`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_metav4$shannon_entropy and alpha_values_metav4$SampleSite 
+
+           CLOACA ORAL  CARAPACE
+ORAL       0.078  -     -       
+CARAPACE   0.078  0.520 -       
+TANK WATER 0.520  0.078 0.078   
+
+P value adjustment method: BH 
+

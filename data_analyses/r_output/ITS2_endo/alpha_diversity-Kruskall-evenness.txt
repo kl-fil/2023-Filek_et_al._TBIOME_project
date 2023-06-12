@@ -1,0 +1,19 @@
+$`Kruskall-Wallis test`
+
+	Kruskal-Wallis rank sum test
+
+data:  pielou_evenness by SampleSite
+Kruskal-Wallis chi-squared = 0.18045, df = 1, p-value = 0.671
+
+
+$`Pairwise comparisons (Wilcox)`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_ITS_noNA$pielou_evenness and alpha_values_meta_ITS_noNA$SampleSite 
+
+           CLOACA
+TANK WATER 0.7   
+
+P value adjustment method: BH 
+

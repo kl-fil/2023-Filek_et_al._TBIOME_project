@@ -1,0 +1,21 @@
+$`Kruskall-Wallis test`
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_PD by SampleSite
+Kruskal-Wallis chi-squared = 22.562, df = 3, p-value = 4.982e-05
+
+
+$`Pairwise comparisons (Wilcox)`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_metav4$faith_PD and alpha_values_metav4$SampleSite 
+
+           CLOACA  ORAL  CARAPACE
+ORAL       0.017   -     -       
+CARAPACE   7.8e-06 0.017 -       
+TANK WATER 0.017   0.383 0.286   
+
+P value adjustment method: BH 
+

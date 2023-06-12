@@ -1,0 +1,19 @@
+$`Kruskall-Wallis test`
+
+	Kruskal-Wallis rank sum test
+
+data:  faith_pd by SampleSite
+Kruskal-Wallis chi-squared = 7.3336, df = 1, p-value = 0.006768
+
+
+$`Pairwise comparisons (Wilcox)`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_ITS_noNA$faith_pd and alpha_values_meta_ITS_noNA$SampleSite 
+
+           CLOACA
+TANK WATER 0.0054
+
+P value adjustment method: BH 
+

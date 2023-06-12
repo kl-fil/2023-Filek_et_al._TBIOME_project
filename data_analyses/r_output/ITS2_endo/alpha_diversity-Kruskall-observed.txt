@@ -1,0 +1,19 @@
+$`Kruskall-Wallis test`
+
+	Kruskal-Wallis rank sum test
+
+data:  observed_features by SampleSite
+Kruskal-Wallis chi-squared = 7.0532, df = 1, p-value = 0.007912
+
+
+$`Pairwise comparisons (Wilcox)`
+
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  alpha_values_meta_ITS_noNA$observed_features and alpha_values_meta_ITS_noNA$SampleSite 
+
+           CLOACA
+TANK WATER 0.0086
+
+P value adjustment method: BH 
+

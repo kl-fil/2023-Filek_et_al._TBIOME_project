@@ -1,0 +1,62 @@
+$`Bray-Curtis ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = bray_dist_data_ITS ~ SampleSite, data = adonis_metadata_ITS, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)
+SampleSite  1   0.3536 0.03566 0.9246  0.466
+Residual   25   9.5625 0.96434              
+Total      26   9.9162 1.00000              
+
+$`Jaccard ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = jacc_dist_data_ITS ~ SampleSite, data = adonis_metadata_ITS, permutations = 999, by = "terms")
+           Df SumOfSqs      R2    F Pr(>F)
+SampleSite  1   0.4627 0.04031 1.05  0.222
+Residual   25  11.0169 0.95969            
+Total      26  11.4797 1.00000            
+
+$`unw. UniFrac ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = uunif_dist_data_ITS ~ SampleSite, data = adonis_metadata_ITS, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)  
+SampleSite  1   0.4533 0.06024 1.6026  0.042 *
+Residual   25   7.0713 0.93976                
+Total      26   7.5246 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`w. UniFrac ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = wunif_dist_data_ITS ~ SampleSite, data = adonis_metadata_ITS, permutations = 999, by = "terms")
+           Df SumOfSqs     R2      F Pr(>F)
+SampleSite  1   0.3305 0.0295 0.7599  0.556
+Residual   25  10.8736 0.9705              
+Total      26  11.2041 1.0000              
+
+$`r. Aitchison ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = raitch_dist_data_ITS ~ SampleSite, data = adonis_metadata_ITS_aitch, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)
+SampleSite  1    2.527 0.03908 1.0981  0.382
+Residual   27   62.143 0.96092              
+Total      28   64.670 1.00000              
+

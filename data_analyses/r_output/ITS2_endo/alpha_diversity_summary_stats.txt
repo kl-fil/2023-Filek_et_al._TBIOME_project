@@ -1,0 +1,32 @@
+$`Observed features`
+# A tibble: 3 × 6
+  SampleSite count  mean    sd median   IQR
+  <ord>      <int> <dbl> <dbl>  <dbl> <dbl>
+1 CLOACA        19  423.  291.   509  372  
+2 TANK WATER     8  662.  106.   674.  97.8
+3 <NA>           1 1128    NA   1128    0  
+
+$`Faith PD`
+# A tibble: 3 × 6
+  SampleSite count  mean    sd median   IQR
+  <ord>      <int> <dbl> <dbl>  <dbl> <dbl>
+1 CLOACA        19  60.0  37.6   66.6  51.7
+2 TANK WATER     8  93.8  18.4   98.0  10.5
+3 <NA>           1 167.   NA    167.    0  
+
+$`Shannon entropy`
+# A tibble: 3 × 6
+  SampleSite count  mean    sd median   IQR
+  <ord>      <int> <dbl> <dbl>  <dbl> <dbl>
+1 CLOACA        19  6.94  1.77   6.76  2.58
+2 TANK WATER     8  8.12  1.03   8.66  1.31
+3 <NA>           1  8.86 NA      8.86  0   
+
+$`Pielou evenness`
+# A tibble: 3 × 6
+  SampleSite count  mean     sd median   IQR
+  <ord>      <int> <dbl>  <dbl>  <dbl> <dbl>
+1 CLOACA        19 0.825  0.145  0.842 0.153
+2 TANK WATER     8 0.867  0.105  0.920 0.156
+3 <NA>           1 0.874 NA      0.874 0    
+

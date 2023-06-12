@@ -1,0 +1,19 @@
+$`Kruskall-Wallis test`
+
+	Kruskal-Wallis rank sum test
+
+data:  shannon_entropy by SampleSite
+Kruskal-Wallis chi-squared = 2.7096, df = 1, p-value = 0.09975
+
+
+$`Pairwise comparisons (Wilcox)`
+
+	Pairwise comparisons using Wilcoxon rank sum exact test 
+
+data:  alpha_values_meta_ITS_noNA$shannon_entropy and alpha_values_meta_ITS_noNA$SampleSite 
+
+           CLOACA
+TANK WATER 0.11  
+
+P value adjustment method: BH 
+

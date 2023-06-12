@@ -1,0 +1,345 @@
+$`Bray-Curtis ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = bray_dist_data_v4 ~ SampleSite, data = adonis_metadata_v4, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  3   3.1915 0.12533 2.5792  0.001 ***
+Residual   54  22.2734 0.87467                  
+Total      57  25.4649 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`Bray-Curtis Pairwise`
+$parent_call
+[1] "bray_dist_data_v4 ~ SampleSite , strata = Null , permutations 999"
+
+$`CLOACA_vs_TANK WATER`
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   1.3038 0.11359 3.2038  0.001 ***
+Residual   25  10.1739 0.88641                  
+Total      26  11.4777 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$CLOACA_vs_ORAL
+           Df SumOfSqs      R2      F Pr(>F)   
+SampleSite  1   0.7943 0.05449 1.9018  0.002 **
+Residual   33  13.7830 0.94551                 
+Total      34  14.5774 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$CLOACA_vs_CARAPACE
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   1.2996 0.09025 3.1744  0.001 ***
+Residual   32  13.1010 0.90975                  
+Total      33  14.4006 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`TANK WATER_vs_ORAL`
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   1.1184 0.10868 2.6825  0.001 ***
+Residual   22   9.1724 0.89132                  
+Total      23  10.2908 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`TANK WATER_vs_CARAPACE`
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   1.0755 0.11243 2.6602  0.001 ***
+Residual   21   8.4903 0.88757                  
+Total      22   9.5658 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$ORAL_vs_CARAPACE
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   0.8496 0.06561 2.0364  0.001 ***
+Residual   29  12.0995 0.93439                  
+Total      30  12.9491 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`Jaccard ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = jacc_dist_data_v4 ~ SampleSite, data = adonis_metadata_v4, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  3   2.5738 0.10271 2.0604  0.001 ***
+Residual   54  22.4854 0.89729                  
+Total      57  25.0593 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`Jaccard Pairwise`
+$parent_call
+[1] "jacc_dist_data_v4 ~ SampleSite , strata = Null , permutations 999"
+
+$`CLOACA_vs_TANK WATER`
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   0.8488 0.07409 2.0005  0.001 ***
+Residual   25  10.6075 0.92591                  
+Total      26  11.4563 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$CLOACA_vs_ORAL
+           Df SumOfSqs      R2      F Pr(>F)   
+SampleSite  1   0.6552 0.04531 1.5663  0.007 **
+Residual   33  13.8039 0.95469                 
+Total      34  14.4591 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$CLOACA_vs_CARAPACE
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   1.0728 0.07444 2.5735  0.001 ***
+Residual   32  13.3402 0.92556                  
+Total      33  14.4131 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`TANK WATER_vs_ORAL`
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   0.8178 0.08208 1.9673  0.001 ***
+Residual   22   9.1452 0.91792                  
+Total      23   9.9630 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`TANK WATER_vs_CARAPACE`
+           Df SumOfSqs      R2     F Pr(>F)    
+SampleSite  1   0.8661 0.09071 2.095  0.001 ***
+Residual   21   8.6816 0.90929                 
+Total      22   9.5476 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$ORAL_vs_CARAPACE
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   0.8841 0.06928 2.1586  0.001 ***
+Residual   29  11.8779 0.93072                  
+Total      30  12.7620 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`unw. UniFrac ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = uunif_dist_data_v4 ~ SampleSite, data = adonis_metadata_v4, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  3   2.6804 0.16057 3.4431  0.001 ***
+Residual   54  14.0128 0.83943                  
+Total      57  16.6932 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`unw. UniFrac Pairwise`
+$parent_call
+[1] "uunif_dist_data_v4 ~ SampleSite , strata = Null , permutations 999"
+
+$`CLOACA_vs_TANK WATER`
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   0.8905 0.11669 3.3026  0.001 ***
+Residual   25   6.7408 0.88331                  
+Total      26   7.6313 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$CLOACA_vs_ORAL
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   0.6858 0.07466 2.6625  0.001 ***
+Residual   33   8.4999 0.92534                  
+Total      34   9.1857 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$CLOACA_vs_CARAPACE
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   1.4201 0.14593 5.4678  0.001 ***
+Residual   32   8.3110 0.85407                  
+Total      33   9.7311 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`TANK WATER_vs_ORAL`
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   0.7066 0.11026 2.7263  0.001 ***
+Residual   22   5.7018 0.88974                  
+Total      23   6.4084 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`TANK WATER_vs_CARAPACE`
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   0.7716 0.12278 2.9392  0.001 ***
+Residual   21   5.5128 0.87722                  
+Total      22   6.2844 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$ORAL_vs_CARAPACE
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1   0.7880 0.09777 3.1427  0.001 ***
+Residual   29   7.2719 0.90223                  
+Total      30   8.0600 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`w. UniFrac ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = wunif_dist_data_v4 ~ SampleSite, data = adonis_metadata_v4, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  3   0.9021 0.18022 3.9571  0.001 ***
+Residual   54   4.1035 0.81978                  
+Total      57   5.0057 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`w. UniFrac Pairwise`
+$parent_call
+[1] "wunif_dist_data_v4 ~ SampleSite , strata = Null , permutations 999"
+
+$`CLOACA_vs_TANK WATER`
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1  0.29795 0.12518 3.5774  0.001 ***
+Residual   25  2.08215 0.87482                  
+Total      26  2.38010 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$CLOACA_vs_ORAL
+           Df SumOfSqs      R2      F Pr(>F)  
+SampleSite  1  0.22273 0.07837 2.8062  0.011 *
+Residual   33  2.61923 0.92163                
+Total      34  2.84196 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$CLOACA_vs_CARAPACE
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1  0.56906 0.18468 7.2486  0.001 ***
+Residual   32  2.51221 0.81532                  
+Total      33  3.08127 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`TANK WATER_vs_ORAL`
+           Df SumOfSqs      R2      F Pr(>F)  
+SampleSite  1  0.19145 0.10739 2.6469  0.021 *
+Residual   22  1.59132 0.89261                
+Total      23  1.78277 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`TANK WATER_vs_CARAPACE`
+           Df SumOfSqs      R2      F Pr(>F)   
+SampleSite  1  0.21257 0.12527 3.0075  0.003 **
+Residual   21  1.48430 0.87473                 
+Total      22  1.69688 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$ORAL_vs_CARAPACE
+           Df SumOfSqs      R2      F Pr(>F)   
+SampleSite  1   0.2468 0.10881 3.5408  0.005 **
+Residual   29   2.0214 0.89119                 
+Total      30   2.2682 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`r. Aitchison ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = rAitch_vegan_dist ~ SampleSite, data = adonis_metadata_v4, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  3     7412 0.09463 1.8814  0.001 ***
+Residual   54    70908 0.90537                  
+Total      57    78320 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`r. Aitchison Pairwise`
+$parent_call
+[1] "rAitch_vegan_dist ~ SampleSite , strata = Null , permutations 999"
+
+$`CLOACA_vs_TANK WATER`
+           Df SumOfSqs     R2      F Pr(>F)    
+SampleSite  1   2380.2 0.0955 2.6395  0.001 ***
+Residual   25  22544.3 0.9045                  
+Total      26  24924.5 1.0000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$CLOACA_vs_ORAL
+           Df SumOfSqs      R2      F Pr(>F)   
+SampleSite  1     1712 0.04473 1.5454  0.002 **
+Residual   33    36555 0.95527                 
+Total      34    38267 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$CLOACA_vs_CARAPACE
+           Df SumOfSqs      R2      F Pr(>F)    
+SampleSite  1     2931 0.06751 2.3167  0.001 ***
+Residual   32    40480 0.93249                  
+Total      33    43411 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`TANK WATER_vs_ORAL`
+           Df SumOfSqs      R2      F Pr(>F)   
+SampleSite  1     2593 0.07852 1.8746  0.003 **
+Residual   22    30428 0.92148                 
+Total      23    33021 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`TANK WATER_vs_CARAPACE`
+           Df SumOfSqs      R2     F Pr(>F)    
+SampleSite  1     2554 0.06919 1.561  0.001 ***
+Residual   21    34353 0.93081                 
+Total      22    36907 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$ORAL_vs_CARAPACE
+           Df SumOfSqs      R2      F Pr(>F)   
+SampleSite  1     2745 0.05371 1.6458  0.002 **
+Residual   29    48364 0.94629                 
+Total      30    51109 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
