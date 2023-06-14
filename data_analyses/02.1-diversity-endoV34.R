@@ -13,6 +13,7 @@ library(ggforce) #v0.4.1
 library(ggtext) #v0.1.2
 library(vegan) #v2.6-4
 library(pairwiseAdonis) #v0.4.1
+library(ggpubr) #v0.6.0s
 
 #set global theme for ggplot
 theme_set(theme_light(base_size = 11, base_family = "Arial")) #<< font!

@@ -13,6 +13,7 @@ library(ggforce) #v0.4.1
 library(ggtext) #v0.1.2
 library(vegan) #v2.6-4
 library(pairwiseAdonis) #v0.4.1
+library(ggpubr) #v0.6.0s
 
 #set global theme for ggplot
 theme_set(theme_light(base_size = 11, base_family = "Arial")) #<< font!
@@ -343,6 +344,262 @@ krustats_even_v4[["Kruskall-Wallis test"]] <- kruskal.test(pielou_evenness ~ Sam
 krustats_even_v4[["Pairwise comparisons (Wilcox)"]] <- pairwise.wilcox.test(alpha_values_metav4$pielou_evenness, alpha_values_metav4$SampleSite,
                                                                              p.adjust.method = "BH")
 capture.output(krustats_even_v4, file = "r_output/16S_epi_v4_merged/alpha_diversity-Kruskall-evenness.txt")
+
+#----- Correlation between alpha diversity and CCL per sample site -----
+
+pears_faith_clov4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("CLOACA")) %>%
+  ggplot(aes(x = CCL, y = faith_PD)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "CLOACA"), method=lm , fill = "gray80", color="#462f25", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "CLOACA"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#93624d", shape = 21, size = 2) + 
+  labs(title = "Cloaca",
+       x = "CCL (cm)",
+       y = "Faith's PD",
+       tag = "a)") +
+  theme_alpha + 
+  theme(panel.grid.major.x = element_line(),
+        axis.title.x = element_blank())
+
+pears_faith_orlv4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("ORAL")) %>%
+  ggplot(aes(x = CCL, y = faith_PD)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "ORAL"), method=lm , fill = "gray80", color="#750000", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "ORAL"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#ff9999", shape = 21, size = 2) + 
+  labs(title = "Oral",
+       x = "CCL (cm)",
+       y = "Faith's PD",
+       tag = "b)") +
+  theme_alpha + 
+  theme(panel.grid.major.x = element_line(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank())
+
+pears_faith_carv4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("CARAPACE")) %>%
+  ggplot(aes(x = CCL, y = faith_PD)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "CARAPACE"), method=lm , fill = "gray80", color="#143e18", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "CARAPACE"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#3BB848", shape = 21, size = 2) + 
+  labs(title = "Carapace",
+       x = "CCL (cm)",
+       y = "Faith's PD",
+       tag = "c)") +
+  theme_alpha + 
+  theme(panel.grid.major.x = element_line(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank())
+
+pears_faith_wtrv4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("TANK WATER")) %>%
+  ggplot(aes(x = CCL, y = faith_PD)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "TANK WATER"), method=lm , fill = "gray80", color="#16474b", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "TANK WATER"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#89d6dc", shape = 21, size = 2) + 
+  labs(title = "Tank Water",
+       x = "CCL (cm)",
+       y = "Faith's PD",
+       tag = "d)") +
+  theme_alpha+ 
+  theme(panel.grid.major.x = element_line(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank())
+
+pears_obs_clov4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("CLOACA")) %>%
+  ggplot(aes(x = CCL, y = observed_features)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "CLOACA"), method=lm , fill = "gray80", color="#462f25", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "CLOACA"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#93624d", shape = 21, size = 2) + 
+  labs(title = "Cloaca",
+       x = "CCL (cm)",
+       y = "ASVs",
+       tag = "e)") +
+  theme_alpha + 
+  theme(panel.grid.major.x = element_line(),
+        axis.title.x = element_blank())
+
+pears_obs_orlv4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("ORAL")) %>%
+  ggplot(aes(x = CCL, y = observed_features)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "ORAL"), method=lm , fill = "gray80", color="#750000", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "ORAL"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#ff9999", shape = 21, size = 2) + 
+  labs(title = "Oral",
+       x = "CCL (cm)",
+       y = "ASVs",
+       tag = "f)") +
+  theme_alpha + 
+  theme(panel.grid.major.x = element_line(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank())
+
+pears_obs_carv4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("CARAPACE")) %>%
+  ggplot(aes(x = CCL, y = observed_features)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "CARAPACE"), method=lm , fill = "gray80", color="#143e18", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "CARAPACE"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#3BB848", shape = 21, size = 2) + 
+  labs(title = "Carapace",
+       x = "CCL (cm)",
+       y = "ASVs",
+       tag = "g)") +
+  theme_alpha + 
+  theme(panel.grid.major.x = element_line(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank())
+
+pears_obs_wtrv4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("TANK WATER")) %>%
+  ggplot(aes(x = CCL, y = observed_features)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "TANK WATER"), method=lm , fill = "gray80", color="#16474b", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "TANK WATER"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#89d6dc", shape = 21, size = 2) + 
+  labs(title = "Tank Water",
+       x = "CCL (cm)",
+       y = "ASVs",
+       tag = "h)") +
+  theme_alpha+ 
+  theme(panel.grid.major.x = element_line(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank())
+
+pears_sha_clov4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("CLOACA")) %>%
+  ggplot(aes(x = CCL, y = shannon_entropy)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "CLOACA"), method=lm , fill = "gray80", color="#462f25", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "CLOACA"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#93624d", shape = 21, size = 2) + 
+  labs(title = "Cloaca",
+       x = "CCL (cm)",
+       y = "Shannon's",
+       tag = "i)") +
+  theme_alpha + 
+  theme(panel.grid.major.x = element_line())
+
+pears_sha_orlv4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("ORAL")) %>%
+  ggplot(aes(x = CCL, y = shannon_entropy)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "ORAL"), method=lm , fill = "gray80", color="#750000", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "ORAL"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#ff9999", shape = 21, size = 2) + 
+  labs(title = "Oral",
+       x = "CCL (cm)",
+       y = "Shannon's",
+       tag = "j)") +
+  theme_alpha + 
+  theme(panel.grid.major.x = element_line(),
+        axis.title.y = element_blank())
+
+pears_sha_carv4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("CARAPACE")) %>%
+  ggplot(aes(x = CCL, y = shannon_entropy)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "CARAPACE"), method=lm , fill = "gray80", color="#143e18", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "CARAPACE"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#3BB848", shape = 21, size = 2) + 
+  labs(title = "Carapace",
+       x = "CCL (cm)",
+       y = "Shannon's",
+       tag = "k)") +
+  theme_alpha + 
+  theme(panel.grid.major.x = element_line(),
+        axis.title.y = element_blank())
+
+pears_sha_wtrv4 <- alpha_values_metav4 %>%
+  filter(SampleSite %in% c("TANK WATER")) %>%
+  ggplot(aes(x = CCL, y = shannon_entropy)) +
+  geom_smooth(data = alpha_values_metav4 %>%
+                filter(SampleSite== "TANK WATER"), method=lm , fill = "gray80", color="#16474b", se=TRUE) +
+  stat_cor(data = alpha_values_metav4 %>%
+             filter(SampleSite== "TANK WATER"), method="pearson", p.accuracy = 0.001, r.accuracy = 0.01) +
+  geom_point(fill = "#89d6dc", shape = 21, size = 2) + 
+  labs(title = "Tank Water",
+       x = "CCL (cm)",
+       y = "Shannon's",
+       tag = "l)") +
+  theme_alpha+ 
+  theme(panel.grid.major.x = element_line(),
+        axis.title.y = element_blank())
+
+pears_alphav4 <- pears_faith_clov4+pears_faith_orlv4+pears_faith_carv4+pears_faith_wtrv4+
+  pears_obs_clov4+pears_obs_orlv4+pears_obs_carv4+pears_obs_wtrv4+ 
+  pears_sha_clov4+pears_sha_orlv4+pears_sha_carv4+pears_sha_wtrv4+plot_layout(ncol = 4)
+
+ggsave(
+  "r_output/16S_epi_v4_merged/pears-alpha-collected.pdf",
+  plot = pears_alphav4,
+  device = cairo_pdf,
+  height = 210,
+  width = 250,
+  units = "mm"
+)
+
+pearson_corr_cloaca_v4 <- list()
+pearson_corr_cloaca_v4[["Observed features"]] <- with(alpha_values_metav4 %>%
+                                                     filter(SampleSite == "CLOACA"),cor.test(CCL,observed_features, method = "pearson"))
+pearson_corr_cloaca_v4[["Faith's PD"]] <- with(alpha_values_metav4 %>%
+                                              filter(SampleSite == "CLOACA"),cor.test(CCL,faith_PD, method = "pearson"))
+pearson_corr_cloaca_v4[["Shannon's entropy"]] <- with(alpha_values_metav4 %>%
+                                                     filter(SampleSite == "CLOACA"),cor.test(CCL,shannon_entropy, method = "pearson"))
+pearson_corr_cloaca_v4[["Pielou's evenness"]] <- with(alpha_values_metav4 %>%
+                                                     filter(SampleSite == "CLOACA"),cor.test(CCL,pielou_evenness, method = "pearson"))
+capture.output(pearson_corr_cloaca_v4, file = "r_output/16S_epi_v4_merged/alpha_diversity-pearson-cloaca.txt")
+
+pearson_corr_oral_v4 <- list()
+pearson_corr_oral_v4[["Observed features"]] <- with(alpha_values_metav4 %>%
+                                                   filter(SampleSite == "ORAL"),cor.test(CCL,observed_features, method = "pearson"))
+pearson_corr_oral_v4[["Faith's PD"]] <- with(alpha_values_metav4 %>%
+                                            filter(SampleSite == "ORAL"),cor.test(CCL,faith_PD, method = "pearson"))
+pearson_corr_oral_v4[["Shannon's entropy"]] <- with(alpha_values_metav4 %>%
+                                                   filter(SampleSite == "ORAL"),cor.test(CCL,shannon_entropy, method = "pearson"))
+pearson_corr_oral_v4[["Pielou's evenness"]] <- with(alpha_values_metav4 %>%
+                                                   filter(SampleSite == "ORAL"),cor.test(CCL,pielou_evenness, method = "pearson"))
+capture.output(pearson_corr_oral_v4, file = "r_output/16S_epi_v4_merged/alpha_diversity-pearson-oral.txt")
+
+pearson_corr_tw_v4 <- list()
+pearson_corr_tw_v4[["Observed features"]] <- with(alpha_values_metav4 %>%
+                                                 filter(SampleSite == "TANK WATER"),cor.test(CCL,observed_features, method = "pearson"))
+pearson_corr_tw_v4[["Faith's PD"]] <- with(alpha_values_metav4 %>%
+                                          filter(SampleSite == "TANK WATER"),cor.test(CCL,faith_PD, method = "pearson"))
+pearson_corr_tw_v4[["Shannon's entropy"]] <- with(alpha_values_metav4 %>%
+                                                 filter(SampleSite == "TANK WATER"),cor.test(CCL,shannon_entropy, method = "pearson"))
+pearson_corr_tw_v4[["Pielou's evenness"]] <- with(alpha_values_metav4 %>%
+                                                 filter(SampleSite == "TANK WATER"),cor.test(CCL,pielou_evenness, method = "pearson"))
+capture.output(pearson_corr_tw_v4, file = "r_output/16S_epi_v4_merged/alpha_diversity-pearson-tank_water.txt")
+
+pearson_corr_car_v4 <- list()
+pearson_corr_car_v4[["Observed features"]] <- with(alpha_values_metav4 %>%
+                                                    filter(SampleSite == "CARAPACE"),cor.test(CCL,observed_features, method = "pearson"))
+pearson_corr_car_v4[["Faith's PD"]] <- with(alpha_values_metav4 %>%
+                                             filter(SampleSite == "CARAPACE"),cor.test(CCL,faith_PD, method = "pearson"))
+pearson_corr_car_v4[["Shannon's entropy"]] <- with(alpha_values_metav4 %>%
+                                                    filter(SampleSite == "CARAPACE"),cor.test(CCL,shannon_entropy, method = "pearson"))
+pearson_corr_car_v4[["Pielou's evenness"]] <- with(alpha_values_metav4 %>%
+                                                    filter(SampleSite == "CARAPACE"),cor.test(CCL,pielou_evenness, method = "pearson"))
+capture.output(pearson_corr_car_v4, file = "r_output/16S_epi_v4_merged/alpha_diversity-pearson-carapace.txt")
 
 ##----- Import data for PCoA plots -----
 

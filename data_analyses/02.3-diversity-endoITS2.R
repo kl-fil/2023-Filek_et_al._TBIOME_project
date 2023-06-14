@@ -100,6 +100,27 @@ theme_alpha_pub <- theme(
   plot.tag = element_text(size = 10)
 )
 
+theme_pcoa1_pub <- theme(
+  panel.border = element_rect(fill = "transparent", color = "black"),
+  plot.subtitle = element_text(size = 11),
+  axis.title.x = element_text(size = 11, color = "black"),
+  axis.title.y = element_text(size = 11, color = "black"),
+  axis.text.x = element_text(size = 9, color = "black"),
+  axis.text.y = element_text(size = 9, color = "black"),
+  legend.title = element_text(size = 11, color = "black"),
+  legend.text = element_markdown(size = 10, color = "black"),
+  legend.spacing.y = unit(0.05, 'cm'),
+  legend.key.size = unit(0.5, 'cm'),
+  panel.grid.minor.x = element_line(linewidth = 0, color = "transparent"),
+  panel.grid.minor.y = element_line(linewidth = 0, color = "transparent"),
+  panel.grid.major.x = element_line(linewidth = 0, color = "transparent"),
+  panel.grid.major.y = element_line(linewidth = 0, color = "transparent"),
+  axis.line.x.bottom = element_line(linewidth = 0.3, color = "black"),
+  axis.line.y.left = element_line(linewidth = 0.3, color = "black"),
+  axis.ticks = element_line(colour = "black"),
+  plot.tag = element_text(size = 11)
+)
+
 ##----- Alpha div plots -----
 
 observed_alpha_rain_ITS <-
@@ -782,6 +803,20 @@ ggsave(
   device = cairo_pdf,
   height = 140,
   width = 160,
+  units = "mm"
+)
+
+unwunifrac_ITS_pub <- unwunifrac1_plot_ITS + theme_pcoa1_pub + labs(subtitle = NULL, tag = "a)")
+rPCA_ITS_pub <- rPCA1_plot_ITS + theme_pcoa1_pub + labs(subtitle = NULL, tag = "b)")
+
+supplement_fig1 <- unwunifrac_ITS_pub/rPCA_ITS_pub+plot_layout(guides = "collect")
+
+ggsave(
+  filename = "r_output/ITS2_endo/supp_beta.pdf",
+  plot = supplement_fig1,
+  device = cairo_pdf,
+  height = 200,
+  width = 140,
   units = "mm"
 )
 
