@@ -600,14 +600,14 @@ ggsave("r_output/16S_endo_v34/barchart_firmicutes.pdf",
        plot = taxaplot_firmicutes,
        device = cairo_pdf,
        height = 100,
-       width = 220,
+       width = 300,
        units = "mm")
 
 ggsave("r_output/16S_endo_v34/barchart_patescibacteria.pdf",
        plot = taxaplot_patescibacteria,
        device = cairo_pdf,
        height = 100,
-       width = 220,
+       width = 300,
        units = "mm")
 
 ggsave("r_output/16S_endo_v34/barchart_spirochaetota.pdf",
@@ -628,28 +628,28 @@ ggsave("r_output/16S_endo_v34/barchart_actinobacteriota.pdf",
        plot = taxaplot_actinobacteria,
        device = cairo_pdf,
        height = 100,
-       width = 220,
+       width = 300,
        units = "mm")
 
 ggsave("r_output/16S_endo_v34/barchart_bacteroidota.pdf",
        plot = taxaplot_bacteroidota,
        device = cairo_pdf,
        height = 100,
-       width = 220,
+       width = 300,
        units = "mm")
 
 ggsave("r_output/16S_endo_v34/barchart_bdellovibrionota.pdf",
        plot = taxaplot_bdellovibrionota,
        device = cairo_pdf,
        height = 100,
-       width = 220,
+       width = 300,
        units = "mm")
 
 ggsave("r_output/16S_endo_v34/barchart_campilobacterota.pdf",
        plot = taxaplot_campilobacterota,
        device = cairo_pdf,
        height = 100,
-       width = 220,
+       width = 300,
        units = "mm")
 
 ggsave("r_output/16S_endo_v34/barchart_cyano.pdf",
