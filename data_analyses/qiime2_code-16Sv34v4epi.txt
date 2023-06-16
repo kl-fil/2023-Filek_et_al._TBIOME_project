@@ -1,4 +1,4 @@
-#-----------------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
 # QIIME2 16S NGS data analyses for TurtleBIOME project (Bosak lab, University
 # of Zagreb)
 # Paper: TBD holobiont
@@ -11,9 +11,9 @@
 # Platform: V3-V4 - Illumina MiSeq v3 (300x2 bp paired-end)                   
 #           V4 - Illumina MiSeq v2 (250x2 bp paired-end)                      
 # Epizoic Sequences available at European Nucleotide Archive under accessions:        
-# - Kanjer et al. (2022) 16S V4 epizoic samples: PRJEB51458 ()                
+# - Kanjer et al. (2022) 16S V4 epizoic samples: PRJEB51458                
 # - Kanjer et al. (2024) 16S V3-V4 epizoic samples: TBD                       
-# Mendeley data DOI: TBD                                                      
+# Mendeley data DOI: 10.17632/p5nrg9wjm7.1                                                      
 # Analyses performed in Qiime2 v. 2023.2
 # ---System versions---
 # Python version: 3.8.16
@@ -90,13 +90,13 @@ qiime demux summarize \
 
 
 #----- Remove primers in sequences using cutadapt prior to DADA2, avoiding readthrough due to seq length variability
-#for V34
+# for V34
 #  --p-adapter-f GGATTAGATACCCBDGTAGTC\ reverse primer reverse complement
 #  --p-front-f CCTACGGGNGGCWGCAG\ forward primer 341F
 #  --p-adapter-r CTGCWGCCNCCCGTAGG\ forward primer reverse complement
 #  --p-front-r GACTACHVGGGTATCTAATCC\ reverse primer 805R
 
-#for V4
+# for V4
 #  --p-adapter-f ATTAGAWACCCBNGTAGTCC\ reverse primer reverse complement
 #  --p-front-f GTGYCAGCMGCCGCGGTAA\ forward primer 515F
 #  --p-adapter-r TTACCGCGGCKGCTGRCAC\ forward primer reverse complement
@@ -132,7 +132,7 @@ qiime demux summarize \
 
 #----- Denoising sequences with DADA2
 
-## Non trimmed V4 carapace data
+# Non trimmed V4 carapace data
 qiime dada2 denoise-paired \
   --i-demultiplexed-seqs qiime2_output/16S_epi_v4_kanjeretal2022/demux-dada2/16Sepiv4-demux-paired-end.qza \
   --p-trunc-len-f 0 \
@@ -155,7 +155,7 @@ qiime feature-table summarize \
   --o-visualization qiime2_output/16S_epi_v4_kanjeretal2022/demux-dada2/16Sepiv4-table-dada2.qzv \
   --m-sample-metadata-file master_metadata/16SepiV4.tsv
 
-## V34 carapace data
+# V34 carapace data
 qiime dada2 denoise-paired \
   --i-demultiplexed-seqs qiime2_output/16S_epi_v34_2022/demux-dada2/16Sepiv34-demux-trimmed.qza \
   --p-trunc-len-f 277 \
@@ -277,7 +277,8 @@ qiime demux summarize \
   --o-visualization qiime2_output/16S_epi_trimv4_2022/dada2/16Sepiv42022-demux-trimmed.qzv
 
 #----- Denoising sequences with DADA2
-## Trimmed from V34 to V4 cloacal, oral, tank water samples 
+# Trimmed from V34 to V4 cloacal, oral, tank water samples 
+
 qiime dada2 denoise-paired \
   --i-demultiplexed-seqs qiime2_output/16S_endo_trimv4_2021/dada2/16Sendov4-demux-trimmed.qza \
   --p-trunc-len-f 101 \
@@ -300,7 +301,7 @@ qiime feature-table summarize \
   --o-visualization qiime2_output/16S_endo_trimv4_2021/dada2/16Sendotrimv4-table-dada2.qzv \
   --m-sample-metadata-file master_metadata/16SendoV34.tsv
 
-## Trimmed to V4 carapace samples - original V4 samples trimmed to same length as V34 samples when trimmed to V4 region
+# Trimmed to V4 carapace samples - original V4 samples trimmed to same length as V34 samples when trimmed to V4 region
 
 qiime dada2 denoise-paired \
   --i-demultiplexed-seqs qiime2_output/16S_epi_v4_kanjeretal2022/demux-dada2/16Sepiv4-demux-trimmed.qza \
@@ -325,7 +326,7 @@ qiime feature-table summarize \
   --o-visualization qiime2_output/16S_epi_v4_kanjeretal2022/demux-dada2/16Sepiv4-table-dada2-trimmed.qzv \
   --m-sample-metadata-file master_metadata/16SepiV4.tsv
 
-## Trimmed from V34 to V4 carapace samples 
+# Trimmed from V34 to V4 carapace samples 
 qiime dada2 denoise-paired \
   --i-demultiplexed-seqs qiime2_output/16S_epi_trimv4_2022/dada2/16Sepiv42022-demux-trimmed.qza \
   --p-trunc-len-f 90 \
@@ -351,6 +352,7 @@ qiime feature-table summarize \
 
 #----- Assigning taxonomy via SILVA v.138 for V4 trimmed sequences
 # Cloacal, oral, tank water sequences
+
 qiime feature-classifier classify-sklearn \
   --i-classifier silva_classifiers/silva-138-99-515-806-nb-classifier.qza \
   --p-reads-per-batch 10000 \
@@ -369,6 +371,7 @@ qiime taxa barplot \
   --o-visualization qiime2_output/16S_endo_trimv4_2021/taxonomy/16Sendotrimv4_taxa-bar-plots.qzv
 
 # Carapace sequences
+
 qiime feature-classifier classify-sklearn \
   --i-classifier silva_classifiers/silva-138-99-515-806-nb-classifier.qza \
   --p-reads-per-batch 10000 \
@@ -439,6 +442,7 @@ qiime metadata tabulate \
   --o-visualization qiime2_output/16S_v4_merged/taxonomy-16S_v4_merged.qzv
 
 # Merged taxa bar plot
+
 qiime taxa barplot \
   --i-table qiime2_output/16S_v4_merged/table-16S_v4_merged.qza \
   --i-taxonomy qiime2_output/16S_v4_merged/taxonomy-16S_v4_merged.qza \
@@ -446,6 +450,7 @@ qiime taxa barplot \
   --o-visualization qiime2_output/16S_v4_merged/taxa-bar-plots-16S_v4_merged.qzv
 
 # Merged alignment
+
 mkdir qiime2_output/16S_v4_merged/phylogeny
 
 qiime phylogeny align-to-tree-mafft-fasttree \
@@ -462,9 +467,10 @@ qiime empress tree-plot \
   --o-visualization qiime2_output/16S_v4_merged/phylogeny/16S_v4_merged-rooted-tree-viz-empress.qzv
 
 #----- Calculate diversity metrics for trimmed V4 data - alpha, beta diversity
+
 mkdir qiime2_output/16S_v4_merged/diversity
 
-## Filter based on taxonomy
+# Filter based on taxonomy
 
 qiime taxa filter-table \
   --i-table qiime2_output/16S_v4_merged/table-16S_v4_merged.qza \
@@ -477,14 +483,14 @@ qiime feature-table summarize \
   --o-visualization qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk.qzv \
   --m-sample-metadata-file master_metadata/16S_all_metadata.tsv
 
-## new taxa bar plot
+# new taxa bar plot
 qiime taxa barplot \
   --i-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk.qza \
   --i-taxonomy qiime2_output/16S_v4_merged/taxonomy-16S_v4_merged.qza \
   --m-metadata-file master_metadata/16S_all_metadata.tsv \
   --o-visualization qiime2_output/16S_v4_merged/taxa-bar-plots-16S_v4_merged-no-mitochleuk.qzv
 
-## Alpha rarefaction
+# Alpha rarefaction
 
 qiime diversity alpha-rarefaction \
   --i-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk.qza \
@@ -493,7 +499,7 @@ qiime diversity alpha-rarefaction \
   --m-metadata-file master_metadata/16S_all_metadata.tsv \
   --o-visualization qiime2_output/16S_v4_merged/diversity/alpha-rarefaction.qzv
 
-## Beta rarefaction na depth 29000 jaccard|braycurtis|unweighted_unifrac|weighted_unifrac
+# Beta rarefaction na depth 29000 jaccard|braycurtis|unweighted_unifrac|weighted_unifrac
 
 mkdir qiime2_output/16S_v4_merged/diversity/beta_rarefaction
 
@@ -531,7 +537,7 @@ qiime diversity beta-rarefaction \
   --i-phylogeny qiime2_output/16S_v4_merged/phylogeny/16S_v4_merged-rooted-tree.qza \
   --o-visualization qiime2_output/16S_v4_merged/diversity/beta_rarefaction/weightedunifrac-rarefied.qzv
 
-## Calculate core metrics at depth 29000 -> D29000
+# Calculate core metrics at depth 29000 -> D29000
 
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny qiime2_output/16S_v4_merged/phylogeny/16S_v4_merged-rooted-tree.qza \
@@ -540,7 +546,7 @@ qiime diversity core-metrics-phylogenetic \
   --m-metadata-file master_metadata/16S_all_metadata.tsv \
   --output-dir qiime2_output/16S_v4_merged/diversity/core-metrics-results-D29000
 
-#! Calculate core metrics at depth 100000 -> D100000
+# Calculate core metrics at depth 100000 -> D100000
 
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny qiime2_output/16S_v4_merged/phylogeny/16S_v4_merged-rooted-tree.qza \
@@ -549,7 +555,7 @@ qiime diversity core-metrics-phylogenetic \
   --m-metadata-file master_metadata/16S_all_metadata.tsv \
   --output-dir qiime2_output/16S_v4_merged/diversity/core-metrics-results-D100000
 
-## Alpha diversity group significance
+# Alpha diversity group significance
 
 qiime diversity alpha-group-significance \
   --i-alpha-diversity qiime2_output/16S_v4_merged/diversity/core-metrics-results-D29000/shannon_vector.qza \
@@ -592,7 +598,8 @@ qiime diversity alpha-group-significance \
   --o-visualization qiime2_output/16S_v4_merged/diversity/core-metrics-results-D100000/observed_features_vector.qzv
 
 
-## DEICODE - robust Aitchison PCA - variable sample filtering and feature filtering
+# DEICODE - robust Aitchison PCA - variable sample filtering and feature filtering
+
 mkdir qiime2_output/16S_v4_merged/diversity/deicode
 
 qiime deicode rpca \
@@ -719,7 +726,8 @@ qiime tools export \
   --input-path qiime2_output/16S_v4_merged/merged-all-data.qzv \
   --output-path qiime2_output/16S_v4_merged/merged-no_filter
 
-## Filtered chloroplasts, mitochondria, eukaryotes and unassigned
+# Filtered chloroplasts, mitochondria, eukaryotes and unassigned
+
 qiime feature-table transpose \
   --i-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk.qza \
   --o-transposed-feature-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk-transposed.qza
@@ -742,19 +750,17 @@ qiime feature-table filter-samples \
   --p-min-frequency 1000 \
   --o-filtered-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk-filter_low_read_samples.qza
 
-#!
 qiime feature-table filter-samples \
   --i-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk.qza \
   --p-min-frequency 29000 \
   --o-filtered-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk-D29000.qza
 
-#!
 qiime feature-table summarize \
   --i-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk-D29000.qza \
   --o-visualization qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk-D29000.qzv \
   --m-sample-metadata-file master_metadata/16S_all_metadata.tsv
 
-#! new taxa bar plot
+# new taxa bar plot
 
 qiime taxa barplot \
   --i-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk-D29000.qza \
@@ -763,7 +769,7 @@ qiime taxa barplot \
   --o-visualization qiime2_output/16S_v4_merged/taxa-bar-plots-16S_v4_merged-no-mitochleuk-D29000.qzv
 
 
-######################! fix for depth !!! ----- Collapse taxonomy on V4 merged data
+# Collapse taxonomy
 
 mkdir qiime2_output/16S_V4_merged/taxonomy_collapsed
 
@@ -801,9 +807,9 @@ do biom convert \
 -o qiime2_output/16S_v4_merged/taxonomy_collapsed/feature-table-${n}.tsv \
 --to-tsv; done
 
-#----------#
 
-## Filter tables based on SampleSite combinations (3, 2 and 1)
+# Filter tables based on SampleSite combinations (3, 2 and 1) and determine core features
+
 mkdir qiime2_output/16S_v4_merged/filtered_tables
 
 qiime feature-table filter-samples \
@@ -912,7 +918,7 @@ cd ../../..
 
 mv qiime2_output/16S_v4_merged/filtered_tables/*.qzv qiime2_output/16S_v4_merged/core_features
 
-## Core features in SampleSite combinations but on collapsed taxonomy - only family, genus and species
+# Core features in SampleSite combinations but on collapsed taxonomy - only family, genus and species
 
 for n in {5..7};\
 do qiime taxa collapse \
@@ -1012,7 +1018,7 @@ do qiime taxa collapse \
   --p-level ${n} \
   --o-collapsed-table qiime2_output/16S_v4_merged/taxonomy_collapsed/table-${n}-cloacal.qza; done
 
-## core on filtered and collapsed to 5, 6, 7 lvl
+# core on filtered and collapsed to 5, 6, 7 lvl
 
 for n in {5..7};\
 do qiime feature-table core-features \
@@ -1059,347 +1065,7 @@ qiime feature-table core-features \
    --o-visualization qiime2_output/16S_v4_merged/core_features/16S_v4_merged-table-${n}-orl-wtr-core_features.qzv; done
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##### Individual turtles with car clo orl samples
-
-mkdir qiime2_output/16S_v4_merged/turtles_collapsed
-
-#filter water out
-
-qiime feature-table filter-samples \
-  --i-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk-D29000.qza \
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --p-where "[SampleSite] IN ('CLOACA', 'ORAL', 'CARAPACE')" \
-  --o-filtered-table qiime2_output/16S_v4_merged/turtles_collapsed/table-no_water.qza
-
-qiime feature-table summarize \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/table-no_water.qza \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/table-no_water.qzv \
-  --m-sample-metadata-file master_metadata/16S_all_metadata.tsv
-
-qiime feature-table filter-samples \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/table-no_water.qza \
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --p-where "[TurtleID] IN ('ID056', 'ID068', 'ID070', 'ID071', 'ID073', 'ID096', 'ID098', 'ID117', 'ID118', 'ID119')" \
-  --o-filtered-table qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs.qza
-
-qiime feature-table summarize \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs.qza \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs.qzv \
-  --m-sample-metadata-file master_metadata/16S_all_metadata.tsv
-
-qiime feature-table filter-samples \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs.qza \
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --p-where "NOT [SamplingEvent]='PMFTI0118'" \
-  --o-filtered-table qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs-clean.qza
-
-qiime feature-table summarize \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs-clean.qza \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs-clean.qzv \
-  --m-sample-metadata-file master_metadata/16S_all_metadata.tsv
-
-#run core features and deicode 
-## Calculate core metrics at depth 29000 -> D29000
-
-qiime diversity core-metrics-phylogenetic \
-  --i-phylogeny qiime2_output/16S_v4_merged/phylogeny/16S_v4_merged-rooted-tree.qza \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs-clean.qza \
-  --p-sampling-depth 29000 \
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --output-dir qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000
-
-mkdir qiime2_output/16S_v4_merged/turtles_collapsed/deicode
-
-qiime deicode rpca \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs-clean.qza \
-  --p-min-feature-count 10 \
-  --p-min-sample-count 500 \
-  --o-biplot qiime2_output/16S_v4_merged/turtles_collapsed/deicode/rPCA-ordination.qza \
-  --o-distance-matrix qiime2_output/16S_v4_merged/turtles_collapsed/deicode/rPCA-matrix.qza
-
-qiime emperor biplot \
-    --i-biplot qiime2_output/16S_v4_merged/turtles_collapsed/deicode/rPCA-ordination.qza \
-    --m-sample-metadata-file master_metadata/16S_all_metadata.tsv \
-    --m-feature-metadata-file qiime2_output/16S_v4_merged/taxonomy-16S_v4_merged.qza \
-    --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/deicode/rPCA-biplot.qzv \
-    --p-number-of-features 8
-
-#permanova based on Turtle ID
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/bray_curtis_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column SampleSite\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-bray-samplesite.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/bray_curtis_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column TurtleID\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-bray-turtleid.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/bray_curtis_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column DetSex\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-bray-detsex.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/bray_curtis_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column AgeRange\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-bray-agerange.qzv
-
-#--
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/jaccard_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column SampleSite\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-jaccard-samplesite.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/jaccard_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column TurtleID\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-jaccard-turtleid.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/jaccard_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column DetSex\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-jaccard-detsex.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/jaccard_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column AgeRange\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-jaccard-agerange.qzv
-
-#--
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/unweighted_unifrac_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column SampleSite\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-unweighted_unifrac-samplesite.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/unweighted_unifrac_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column TurtleID\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-unweighted_unifrac-turtleid.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/unweighted_unifrac_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column DetSex\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-unweighted_unifrac-detsex.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/unweighted_unifrac_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column AgeRange\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-unweighted_unifrac-agerange.qzv
-
-#--
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/weighted_unifrac_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column SampleSite\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-weighted_unifrac-samplesite.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/weighted_unifrac_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column TurtleID\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-weighted_unifrac-turtleid.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/weighted_unifrac_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column DetSex\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-weighted_unifrac-detsex.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/weighted_unifrac_distance_matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column AgeRange\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/core-metrics-results-D29000/permanova-weighted_unifrac-agerange.qzv
-
-#--
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/deicode/rPCA-matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column SampleSite\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/deicode/permanova-rPCA-samplesite.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/deicode/rPCA-matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column TurtleID\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/deicode/permanova-rPCA-turtleid.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/deicode/rPCA-matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column DetSex\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/deicode/permanova-rPCA-detsex.qzv
-
-qiime diversity beta-group-significance \
-  --i-distance-matrix  qiime2_output/16S_v4_merged/turtles_collapsed/deicode/rPCA-matrix.qza\
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column AgeRange\
-  --p-pairwise TRUE \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/deicode/permanova-rPCA-agerange.qzv
-
-#merge?? and core features run? 10 samples basically
-
-mkdir qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids 
-
-qiime feature-table group \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs-clean.qza \
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column TurtleID \
-  --p-mode median-ceiling \
-  --p-axis sample \
-  --o-grouped-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-median.qza
-
-qiime feature-table group \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs-clean.qza \
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column TurtleID \
-  --p-mode mean-ceiling \
-  --p-axis sample \
-  --o-grouped-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-mean.qza
-
-qiime feature-table group \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/table-10IDs-clean.qza \
-  --m-metadata-file master_metadata/16S_all_metadata.tsv \
-  --m-metadata-column TurtleID \
-  --p-mode sum \
-  --p-axis sample \
-  --o-grouped-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-sum.qza
-
-qiime feature-table summarize \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-median.qza \
-  --m-sample-metadata-file master_metadata/16S_all_10ids.tsv \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-median.qzv
-
-qiime feature-table summarize \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-mean.qza \
-  --m-sample-metadata-file master_metadata/16S_all_10ids.tsv \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-mean.qzv
-
-qiime feature-table summarize \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-sum.qza \
-  --m-sample-metadata-file master_metadata/16S_all_10ids.tsv \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-sum.qzv
-
-qiime taxa barplot \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-median.qza \
-  --i-taxonomy qiime2_output/16S_v4_merged/taxonomy-16S_v4_merged.qza \
-  --m-metadata-file master_metadata/16S_all_10ids.tsv \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/taxa-bar-plots-merged_ids-median.qzv
-
-qiime taxa barplot \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-mean.qza \
-  --i-taxonomy qiime2_output/16S_v4_merged/taxonomy-16S_v4_merged.qza \
-  --m-metadata-file master_metadata/16S_all_10ids.tsv \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/taxa-bar-plots-merged_ids-mean.qzv
-
-qiime taxa barplot \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-sum.qza \
-  --i-taxonomy qiime2_output/16S_v4_merged/taxonomy-16S_v4_merged.qza \
-  --m-metadata-file master_metadata/16S_all_10ids.tsv \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/taxa-bar-plots-merged_ids-sum.qzv
-
-
-qiime diversity core-metrics-phylogenetic \
-  --i-phylogeny qiime2_output/16S_v4_merged/phylogeny/16S_v4_merged-rooted-tree.qza \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-mean.qza \
-  --p-sampling-depth 120000 \
-  --m-metadata-file master_metadata/16S_all_10ids.tsv \
-  --output-dir qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids//core-metrics-results-mean-D120000
-
-qiime diversity core-metrics-phylogenetic \
-  --i-phylogeny qiime2_output/16S_v4_merged/phylogeny/16S_v4_merged-rooted-tree.qza \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-sum.qza \
-  --p-sampling-depth 360000 \
-  --m-metadata-file master_metadata/16S_all_10ids.tsv \
-  --output-dir qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids//core-metrics-results-sum-D360000
-
-mkdir qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/deicode
-
-qiime deicode rpca \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-mean.qza \
-  --p-min-feature-count 10 \
-  --p-min-sample-count 500 \
-  --o-biplot qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/deicode/rPCA-ordination-mean.qza \
-  --o-distance-matrix qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/deicode/rPCA-matrix-mean.qza
-
-qiime emperor biplot \
-  --i-biplot qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/deicode/rPCA-ordination-mean.qza \
-  --m-sample-metadata-file master_metadata/16S_all_10ids.tsv \
-  --m-feature-metadata-file qiime2_output/16S_v4_merged/taxonomy-16S_v4_merged.qza \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/deicode/rPCA-biplot-mean.qzv \
-  --p-number-of-features 5
-
-qiime deicode rpca \
-  --i-table qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/table_ids-sum.qza \
-  --p-min-feature-count 10 \
-  --p-min-sample-count 500 \
-  --o-biplot qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/deicode/rPCA-ordination-sum.qza \
-  --o-distance-matrix qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/deicode/rPCA-matrix-sum.qza
-
-qiime emperor biplot \
-  --i-biplot qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/deicode/rPCA-ordination-sum.qza \
-  --m-sample-metadata-file master_metadata/16S_all_10ids.tsv \
-  --m-feature-metadata-file qiime2_output/16S_v4_merged/taxonomy-16S_v4_merged.qza \
-  --o-visualization qiime2_output/16S_v4_merged/turtles_collapsed/merged_ids/deicode/rPCA-biplot-sum.qzv \
-  --p-number-of-features 5
-
-
-#----- QURRO on rPCA loadings
+#----- DEICODE on table at 29000 depth and QURRO on rPCA loadings
 
 qiime deicode rpca \
   --i-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk-D29000.qza \
@@ -1421,20 +1087,3 @@ qiime qurro loading-plot \
   --m-sample-metadata-file master_metadata/16S_all_metadata.tsv \
   --m-feature-metadata-file qiime2_output/16S_v4_merged/taxonomy-16S_v4_merged.qza \
   --o-visualization qiime2_output/16S_v4_merged/diversity/deicode/qurro-plot-29000a.qzv
-
-# contingerncy filtering, feature in at least 10% samples - 58 samples so 6 is cca 10%
-qiime feature-table filter-features \
-  --i-table qiime2_output/16S_v4_merged/table-16S_v4_merged-no-mitochleuk-D29000.qza \
-  --p-min-frequency 10 \
-  --p-min-samples 6 \
-  --o-filtered-table qiime2_output/16S_v4_merged/sample-contingency-filtered-table-D29000-10pct.qza
-
-
-
-
-
-
-
-
-
-

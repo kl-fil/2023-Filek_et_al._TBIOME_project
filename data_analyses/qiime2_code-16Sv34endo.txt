@@ -3,14 +3,14 @@
 # of Zagreb)
 # Paper: TBD holobiont
 # By: Klara Filek
-# Samples: cloacal, oral and tank water samples of loggerhead sea turtles
-# Objective: analyze endozoiv V34 dataset independently
+# Samples: cloacal, oral, and tank water samples of loggerhead sea turtles
+# Objective: analyze endozoic V34 dataset independently
 # Region: V3-V4 region of 16S rRNA gene
 # Primers: 314F and 805R (Klindworth et al. 2013)
 # Platform: Illumina MiSeq v3 (300x2 bp paired-end)
 # Sequences available at European Nucleotide Archive under accession:
-# - TBD
-# Mendeley data DOI: TBD
+# - PRJEB62752
+# Mendeley data DOI: 10.17632/p5nrg9wjm7.1
 # Analyses performed in Qiime2 v. 2023.2
 # ---System versions---
 # Python version: 3.8.16
@@ -175,7 +175,7 @@ qiime feature-table summarize \
   --o-visualization qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-no_mitochl.qzv \
   --m-sample-metadata-file master_metadata/16SendoV34.tsv
 
-## New taxa bar plot without mitochondria and chloroplast sequences
+# New taxa bar plot without mitochondria and chloroplast sequences
 
 qiime taxa barplot \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-no_mitochl.qza \
@@ -339,7 +339,7 @@ qiime feature-table summarize \
 
 #----- Filter tables based on sample sites
 
-## Cloacal samples without low read samples
+# Cloacal samples without low read samples
 qiime feature-table filter-samples \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-no_mitochl-filter_low_read_samples.qza \
   --m-metadata-file master_metadata/16SendoV34.tsv \
@@ -351,7 +351,7 @@ qiime feature-table summarize \
   --o-visualization qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-cloacal.qzv \
   --m-sample-metadata-file master_metadata/16SendoV34.tsv
 
-## Oral samples without low read samples
+# Oral samples without low read samples
 qiime feature-table filter-samples \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-no_mitochl-filter_low_read_samples.qza \
   --m-metadata-file master_metadata/16SendoV34.tsv \
@@ -363,7 +363,7 @@ qiime feature-table summarize \
   --o-visualization qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-oral.qzv \
   --m-sample-metadata-file master_metadata/16SendoV34.tsv
 
-## Cloacal from all samples chl ands mitoh filtered (low read samples included)
+# Cloacal from all samples chl ands mitoh filtered (low read samples included)
 qiime feature-table filter-samples \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-no_mitochl.qza \
   --m-metadata-file master_metadata/16SendoV34.tsv \
@@ -375,7 +375,7 @@ qiime feature-table summarize \
   --o-visualization qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-cloacal-fltrd.qzv \
   --m-sample-metadata-file master_metadata/16SendoV34.tsv
 
-## Oral from all samples chl ands mitoh filtered (low read samples included)
+# Oral from all samples chl ands mitoh filtered (low read samples included)
 qiime feature-table filter-samples \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-no_mitochl.qza \
   --m-metadata-file master_metadata/16SendoV34.tsv \
@@ -387,7 +387,7 @@ qiime feature-table summarize \
   --o-visualization qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-oral-fltrd.qzv \
   --m-sample-metadata-file master_metadata/16SendoV34.tsv
 
-## Water from all samples chl ands mitoh filtered
+# Water from all samples chl ands mitoh filtered
 qiime feature-table filter-samples \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-no_mitochl.qza \
   --m-metadata-file master_metadata/16SendoV34.tsv \
@@ -399,7 +399,7 @@ qiime feature-table summarize \
   --o-visualization qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-water-fltrd.qzv \
   --m-sample-metadata-file master_metadata/16SendoV34.tsv
 
-## Core metrics D28000 cloacal
+# Core metrics D28000 cloacal
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny qiime2_output/16S_endo_v34_2021/phylogeny/16Sendov34-rooted-tree.qza \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-cloacal.qza \
@@ -407,7 +407,7 @@ qiime diversity core-metrics-phylogenetic \
   --m-metadata-file master_metadata/16SendoV34.tsv \
   --output-dir qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal
 
-## Core metrics D28000 oral
+# Core metrics D28000 oral
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny qiime2_output/16S_endo_v34_2021/phylogeny/16Sendov34-rooted-tree.qza \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-oral.qza \
@@ -415,7 +415,7 @@ qiime diversity core-metrics-phylogenetic \
   --m-metadata-file master_metadata/16SendoV34.tsv \
   --output-dir qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-oral
 
-## Robust Aitchison PCA on cloacal and oral samples (low read samples included)
+# Robust Aitchison PCA on cloacal and oral samples (low read samples included)
 
 mkdir qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode-cloacal
 mkdir qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode-oral
@@ -448,7 +448,7 @@ qiime emperor biplot \
   --o-visualization qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode-oral/rPCA-biplot.qzv \
   --p-number-of-features 8
 
-## Robust Aitchison PCA on cloacal and oral samples (low read samples excluded)
+# Robust Aitchison PCA on cloacal and oral samples (low read samples excluded)
 
 qiime deicode rpca \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-cloacal.qza \
@@ -480,7 +480,7 @@ qiime emperor biplot \
 
 #----- PERMANOVA testing
 
-## SampleSite clo vs- oral vs- water on complete samples
+# SampleSite clo vs- oral vs- water on complete samples
 
 qiime diversity beta-group-significance \
   --i-distance-matrix  qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000/bray_curtis_distance_matrix.qza\
@@ -538,7 +538,7 @@ qiime diversity beta-group-significance \
   --p-pairwise TRUE \
   --o-visualization qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode/permanova-rPCA-samplesite-28000.qzv
 
-## Permanova cloacal HospStatus|TurtleSex|AgeRange|DetSex
+# Permanova cloacal HospStatus|TurtleSex|AgeRange|DetSex
 
 qiime diversity beta-group-significance \
   --i-distance-matrix  qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/bray_curtis_distance_matrix.qza\
@@ -711,7 +711,7 @@ qiime diversity beta-group-significance \
   --o-visualization qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode-cloacal/permanova-rPCA-DetSex-28000.qzv
 
 
-## testing additional categories Age2
+# testing additional categories Age2
 qiime diversity beta-group-significance \
   --i-distance-matrix  qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-cloacal/bray_curtis_distance_matrix.qza\
   --m-metadata-file master_metadata/16SendoV34.tsv \
@@ -754,7 +754,7 @@ qiime diversity beta-group-significance \
   --p-pairwise TRUE \
   --o-visualization qiime2_output/16S_endo_v34_2021/filtered/diversity/deicode-cloacal/permanova-rPCA-Age2-28000.qzv
 
-## Permanova oral HospStatus|TurtleSex|AgeRange
+# Permanova oral HospStatus|TurtleSex|AgeRange
 
 qiime diversity beta-group-significance \
   --i-distance-matrix  qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-oral/bray_curtis_distance_matrix.qza\
@@ -1011,7 +1011,7 @@ qiime diversity adonis \
 
 #----- Export merged data (table counts, rep seqs, taxonomy)
 
-## original non-filtered reads and samples
+# original non-filtered reads and samples
 
 qiime feature-table transpose \
   --i-table qiime2_output/16S_endo_v34_2021/demux-dada2/16Sendov34-table-dada2-trimmed.qza \
@@ -1027,7 +1027,7 @@ qiime tools export \
   --input-path qiime2_output/16S_endo_v34_2021/merged-all-data-no_filter.qzv \
   --output-path qiime2_output/16S_endo_v34_2021/merged-no_filter
 
-## chloroplasts and mitochondria filtered
+# chloroplasts and mitochondria filtered
 
 qiime feature-table transpose \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-no_mitochl.qza \
@@ -1082,7 +1082,7 @@ do biom convert \
 -o qiime2_output/16S_endo_v34_2021/taxonomy/collapsed/feature-table-${n}.tsv \
 --to-tsv; done
 
-## Unfiltered table
+# Unfiltered table
 
 for n in {1..7};\
 do qiime taxa collapse \
@@ -1131,7 +1131,7 @@ do qiime feature-table core-features \
   --i-table qiime2_output/16S_endo_v34_2021/taxonomy/collapsed/table-${n}.qza \
   --o-visualization qiime2_output/16S_endo_v34_2021/core_features/table-${n}-core_features.qzv; done
 
-## investigate core features in SampleSite pairs and individual categories
+# investigate core features in SampleSite pairs and individual categories
 qiime feature-table filter-samples \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-no_mitochl-filter_low_read_samples.qza \
   --m-metadata-file master_metadata/16SendoV34.tsv \
@@ -1172,7 +1172,7 @@ qiime feature-table core-features \
   --i-table qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-table-orl-wtr.qza \
   --o-visualization qiime2_output/16S_endo_v34_2021/core_features/16Sendov34-table-orl-wtr-core_asv.qzv
 
-## Core features in individual tables on collapsed taxonomy - only family and genus and species
+# Core features in individual tables on collapsed taxonomy - only family and genus and species
 
 for n in {5..7};\
 do qiime taxa collapse \
