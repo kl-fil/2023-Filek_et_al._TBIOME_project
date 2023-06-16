@@ -246,7 +246,7 @@ qiime empress tree-plot \
 
 #----- Cut V34 and V4 data sequences to V4 region using cutadapt (endozoic and epizoic dataset)
 
-mkdir -p qiime2_output/{16S_endo_trimv4_2021,16S_epi_trimv4_2022}/{dada2,taxonomy,phylogeny,filtered}
+mkdir -p qiime2_output/{16S_endo_trimv4_2021,16S_epi_trimv4_2022}/{dada2,taxonomy}
 
 qiime cutadapt trim-paired \
   --p-cores 4 \
