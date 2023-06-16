@@ -1,7 +1,7 @@
 # V4 16S rRNA gene sequencing of carapace samples from Kanjer et al. (2022)
  Download original paired-end sequence files (fastq.qz) from European Nucleotide Archive (https://www.ebi.ac.uk/ena/browser/search) under accession PRJEB51458.
  
- Samples: 
+ Samples:  
  TB115 - accession: SAMEA13314290  
  TB117 - accession: SAMEA13314292  
  TB119 - accession: SAMEA13314294  
