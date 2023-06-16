@@ -47,6 +47,9 @@
 # vsearch: XX
 #-----------------------------------------------------------------------------#
 
+# Note: prior to assigning taxonomy a classifier needs to be downloaded and put in classifier folder
+# ITS2 classifier: UNITE version 8 dynamic classifier - https://unite.ut.ee/repository.php (or see Mendeley Data)
+
 #----- QIIME 2 environment activation in Conda
 conda activate qiime2-2021.8
 
@@ -130,19 +133,19 @@ qiime phylogeny align-to-tree-mafft-fasttree \
 #----- Assigning taxonomy via UNITE database v.8 dynamic classifier (premade by Qiime 2 team)
 
 qiime feature-classifier classify-sklearn \
-  --i-classifier unite_classifier_ver8_dynamic.qza \
-  --i-reads rep-seqs-trimmed.qza \
-  --o-classification taxonomy.qza
+  --i-classifier classifiers/unite_classifier_ver8_dynamic.qza \
+  --i-reads qiime2_output/rep-seqs-trimmed.qza \
+  --o-classification qiime2_output/taxonomy.qza
 
 qiime metadata tabulate \
-  --m-input-file taxonomy.qza \
-  --o-visualization taxonomy.qzv
+  --m-input-file qiime2_output/taxonomy.qza \
+  --o-visualization qiime2_output/taxonomy.qzv
 
 qiime taxa barplot \
-  --i-table table-trimmed.qza \
-  --i-taxonomy taxonomy.qza \
-  --m-metadata-file metadata-ITS-new.tsv \
-  --o-visualization taxa-bar-plots.qzv
+  --i-table qiime2_output/table-trimmed.qza \
+  --i-taxonomy qiime2_output/taxonomy.qza \
+  --m-metadata-file qiime2_output/metadata-ITS-new.tsv \
+  --o-visualization qiime2_output/taxa-bar-plots.qzv
 
 #----- Alpha rarefaction to determine approapriate depth for downstream analyses
 

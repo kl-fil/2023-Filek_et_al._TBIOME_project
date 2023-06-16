@@ -47,6 +47,9 @@
 # vsearch: 2023.2.0
 #-----------------------------------------------------------------------------#
 
+# Note: prior to assigning taxonomy a classifier needs to be downloaded and put in classifier folder
+# v34 SILVA classifier: made by Lucija Kanjer following Qiime 2 instructions - see Mendeley Data
+
 #----- QIIME 2 environment activation in Conda
 conda activate qiime2-2023.2
 
@@ -131,7 +134,7 @@ qiime feature-table summarize \
 # --o-classifier classifier-V34.qza
 
 qiime feature-classifier classify-sklearn \
-  --i-classifier silva_classifiers/classifier-V34-LK.qza \
+  --i-classifier classifiers/classifier-V34-LK.qza \
   --p-reads-per-batch 10000 \
   --p-n-jobs -2 \
   --i-reads qiime2_output/16S_endo_v34_2021/demux-dada2/16Sendov34-rep-seqs-dada2-trimmed.qza \
