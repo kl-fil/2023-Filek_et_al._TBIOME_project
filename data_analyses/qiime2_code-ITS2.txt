@@ -13,38 +13,34 @@
 # ZENODO data DOI: 10.5281/zenodo.8054926
 # Analyses performed in Qiime2 v. 2021.8
 # ---System versions---
-# Python version: XX
+# Python version: 3.8.10
 # QIIME 2 release: 2021.8
 # QIIME 2 version: 2021.8.0
 # q2cli version: 2021.8.0
 # ---Installed plugins---
-# alignment: XX
-# composition: XX
-# cutadapt: XX
-# dada2: XX
-# deblur: XX
-# deicode: XX
-# demux: XX
-# diversity: XX
-# diversity-lib: XX
-# emperor: XX
-# empress: XX
-# feature-classifier: XX
-# feature-table: XX
-# fragment-insertion: XX
-# gemelli: XX
-# gneiss: XX
-# longitudinal: XX
-# metadata: XX
-# phylogeny: XX
-# quality-control: XX
-# quality-filter: XX
-# qurro: XX
-# rescript: XX
-# sample-classifier: XX
-# taxa: XX
-# types: XX
-# vsearch: XX
+# alignment: 2021.8.0
+# composition: 2021.8.0
+# cutadapt: 2021.8.0
+# dada2: 2021.8.0
+# deblur: 2021.8.0
+# deicode: 0.2.4
+# demux: 2021.8.0
+# diversity: 2021.8.0
+# diversity-lib: 2021.8.0
+# emperor: 2021.8.0
+# feature-classifier: 2021.8.0
+# feature-table: 2021.8.0
+# fragment-insertion: 2021.8.0
+# gneiss: 2021.8.0
+# longitudinal: 2021.8.0
+# metadata: 2021.8.0
+# phylogeny: 2021.8.0
+# quality-control: 2021.8.0
+# quality-filter: 2021.8.0
+# sample-classifier: 2021.8.0
+# taxa: 2021.8.0
+# types: 2021.8.0
+# vsearch: 2021.8.0
 #-----------------------------------------------------------------------------#
 
 # Note: prior to assigning taxonomy a classifier needs to be downloaded and put in classifier folder
