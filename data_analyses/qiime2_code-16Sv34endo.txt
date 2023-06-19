@@ -10,7 +10,7 @@
 # Platform: Illumina MiSeq v3 (300x2 bp paired-end)
 # Sequences available at European Nucleotide Archive under accession:
 # - PRJEB62752
-# Mendeley data DOI: 10.17632/p5nrg9wjm7.1
+# ZENODO data DOI: 10.5281/zenodo.8054926
 # Analyses performed in Qiime2 v. 2023.2
 # ---System versions---
 # Python version: 3.8.16
