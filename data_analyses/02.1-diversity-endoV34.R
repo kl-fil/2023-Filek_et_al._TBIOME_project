@@ -1304,6 +1304,19 @@ adonis_results_v34_clo[["r. Aitchison ADONIS"]] <- adonis2(formula = clo_raitch_
 adonis_results_v34_clo[["r. Aitchison Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(clo_raitch_dist_v34~TurtleSex, data = adonis_metadata_clo, permutations = 999)
 capture.output(adonis_results_v34_clo, file = "r_output/16S_endo_v34/adonis_permanova-cloaca-turtle_sex_category.txt")
 
+adonis_results_v34_clo_hosp <- list()
+adonis_results_v34_clo_hosp[["Bray-Curtis ADONIS"]] <- adonis2(formula = bray_dist_data_clo_v34~HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo_hosp[["Bray-Curtis Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(bray_dist_data_clo_v34~HospStatus, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo_hosp[["Jaccard ADONIS"]] <- adonis2(formula = jacc_dist_data_clo_v34~HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo_hosp[["Jaccard Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(jacc_dist_data_clo_v34~HospStatus, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo_hosp[["unw. UniFrac ADONIS"]] <- adonis2(formula = uunif_dist_data_clo_v34~HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo_hosp[["unw. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(uunif_dist_data_clo_v34~HospStatus, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo_hosp[["w. UniFrac ADONIS"]] <- adonis2(formula = wunif_dist_data_clo_v34~HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo_hosp[["w. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(wunif_dist_data_clo_v34~HospStatus, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo_hosp[["r. Aitchison ADONIS"]] <- adonis2(formula = clo_raitch_dist_v34~HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo_hosp[["r. Aitchison Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(clo_raitch_dist_v34~HospStatus, data = adonis_metadata_clo, permutations = 999)
+capture.output(adonis_results_v34_clo_hosp, file = "r_output/16S_endo_v34/adonis_permanova-cloaca-turtle_hosp_status_category.txt")
+
 
 # Adonis2 oral for hospitalization status category
 bray_dist_orl_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/diversity/core-metrics-results-D28000-oral/bray_curtis_distance_matrix.qza")
@@ -1322,7 +1335,7 @@ adonis_metadata_orl <- metadata_endov34 %>%
   filter(!SampleID %in% removed_samples_v34) %>%
   filter(SampleSite == "ORAL")
 
-# distances and metadata need to be sorted in the same way (in this cae alphabetically)
+# distances and metadata need to be sorted in the same way (in this case alphabetically)
 adonis_metadata_orl <- adonis_metadata_orl[order(adonis_metadata_orl$SampleID),]
 
 adonis_results_v34_orl <- list()

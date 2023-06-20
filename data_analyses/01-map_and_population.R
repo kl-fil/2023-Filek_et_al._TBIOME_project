@@ -129,6 +129,34 @@ ggsave(file = "r_output/ccl_weight_summary_pub.pdf",
        units = "mm"
 )
 
+# Weight and CCL sumarry stats
+metadata_turtle <- readr::read_tsv("master_metadata/2023holobiont_master_metadata.tsv")
+metadata_turtle <- distinct(metadata_turtle %>% 
+                              select(TurtleID, CCL, Weight, AgeRange)) %>% 
+                      na.omit()
+
+summary_stats_ccl <- group_by(metadata_turtle, AgeRange) %>%
+  summarise(
+    count = n(),
+    mean = mean(CCL, na.rm = TRUE),
+    sd = sd(CCL, na.rm = TRUE),
+    median = median(CCL, na.rm = TRUE),
+    IQR = IQR(CCL, na.rm = TRUE)
+  )
+
+summary_stats_weight <- group_by(metadata_turtle, AgeRange) %>%
+  summarise(
+    count = n(),
+    mean = mean(Weight, na.rm = TRUE),
+    sd = sd(Weight, na.rm = TRUE),
+    median = median(Weight, na.rm = TRUE),
+    IQR = IQR(Weight, na.rm = TRUE)
+  )
+
+capture.output(summary_stats_ccl, file = "r_output/turtle_pop_summary_stats_ccl.txt")
+capture.output(summary_stats_weight, file = "r_output/turtle_pop_summary_stats_weight.txt")
+
+
 #----- Session and citations -----
 sessionInfo()
 citation("maps")

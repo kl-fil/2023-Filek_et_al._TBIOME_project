@@ -1,0 +1,193 @@
+$`Bray-Curtis ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = bray_dist_data_clo_v34 ~ HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  2   0.8666 0.11092 0.9981  0.477
+Residual   16   6.9466 0.88908              
+Total      18   7.8133 1.00000              
+
+$`Bray-Curtis Pairwise`
+$parent_call
+[1] "bray_dist_data_clo_v34 ~ HospStatus , strata = Null , permutations 999"
+
+$MID_vs_EARLY
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  1   0.4312 0.08307 0.9966  0.462
+Residual   11   4.7598 0.91693              
+Total      12   5.1910 1.00000              
+
+$MID_vs_LATE
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  1   0.4059 0.10366 0.9251  0.657
+Residual    8   3.5101 0.89634              
+Total       9   3.9160 1.00000              
+
+$EARLY_vs_LATE
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  1   0.4534 0.07461 1.0482   0.36
+Residual   13   5.6233 0.92539              
+Total      14   6.0767 1.00000              
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`Jaccard ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = jacc_dist_data_clo_v34 ~ HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms")
+           Df SumOfSqs    R2      F Pr(>F)  
+HospStatus  2   0.9707 0.122 1.1116  0.096 .
+Residual   16   6.9854 0.878                
+Total      18   7.9561 1.000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`Jaccard Pairwise`
+$parent_call
+[1] "jacc_dist_data_clo_v34 ~ HospStatus , strata = Null , permutations 999"
+
+$MID_vs_EARLY
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  1   0.4819 0.09139 1.1064  0.218
+Residual   11   4.7912 0.90861              
+Total      12   5.2731 1.00000              
+
+$MID_vs_LATE
+           Df SumOfSqs      R2     F Pr(>F)
+HospStatus  1   0.4669 0.11816 1.072  0.169
+Residual    8   3.4843 0.88184             
+Total       9   3.9511 1.00000             
+
+$EARLY_vs_LATE
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  1   0.5006 0.08079 1.1426  0.108
+Residual   13   5.6953 0.91921              
+Total      14   6.1959 1.00000              
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`unw. UniFrac ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = uunif_dist_data_clo_v34 ~ HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  2   0.6185 0.12224 1.1141  0.238
+Residual   16   4.4410 0.87776              
+Total      18   5.0595 1.00000              
+
+$`unw. UniFrac Pairwise`
+$parent_call
+[1] "uunif_dist_data_clo_v34 ~ HospStatus , strata = Null , permutations 999"
+
+$MID_vs_EARLY
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  1   0.3632 0.10761 1.3264  0.125
+Residual   11   3.0120 0.89239              
+Total      12   3.3752 1.00000              
+
+$MID_vs_LATE
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  1  0.30135 0.11785 1.0688  0.291
+Residual    8  2.25567 0.88215              
+Total       9  2.55701 1.00000              
+
+$EARLY_vs_LATE
+           Df SumOfSqs      R2     F Pr(>F)
+HospStatus  1   0.2677 0.06897 0.963   0.49
+Residual   13   3.6143 0.93103             
+Total      14   3.8820 1.00000             
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`w. UniFrac ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = wunif_dist_data_clo_v34 ~ HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)  
+HospStatus  2  0.38584 0.16376 1.5667   0.07 .
+Residual   16  1.97026 0.83624                
+Total      18  2.35610 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`w. UniFrac Pairwise`
+$parent_call
+[1] "wunif_dist_data_clo_v34 ~ HospStatus , strata = Null , permutations 999"
+
+$MID_vs_EARLY
+           Df SumOfSqs      R2      F Pr(>F)  
+HospStatus  1  0.17124 0.14045 1.7973  0.075 .
+Residual   11  1.04801 0.85955                
+Total      12  1.21925 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$MID_vs_LATE
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  1  0.10738 0.08575 0.7503  0.734
+Residual    8  1.14491 0.91425              
+Total       9  1.25229 1.00000              
+
+$EARLY_vs_LATE
+           Df SumOfSqs      R2      F Pr(>F)  
+HospStatus  1  0.26874 0.13328 1.9991  0.031 *
+Residual   13  1.74760 0.86672                
+Total      14  2.01634 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`r. Aitchison ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = clo_raitch_dist_v34 ~ HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms")
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  2   2058.2 0.11823 1.0727  0.187
+Residual   16  15349.6 0.88177              
+Total      18  17407.8 1.00000              
+
+$`r. Aitchison Pairwise`
+$parent_call
+[1] "clo_raitch_dist_v34 ~ HospStatus , strata = Null , permutations 999"
+
+$MID_vs_EARLY
+           Df SumOfSqs      R2     F Pr(>F)
+HospStatus  1   1173.6 0.09458 1.149  0.169
+Residual   11  11235.4 0.90542             
+Total      12  12409.0 1.00000             
+
+$MID_vs_LATE
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  1   1113.1 0.11793 1.0695  0.239
+Residual    8   8325.7 0.88207              
+Total       9   9438.8 1.00000              
+
+$EARLY_vs_LATE
+           Df SumOfSqs      R2      F Pr(>F)
+HospStatus  1    847.8 0.07073 0.9895  0.502
+Residual   13  11138.1 0.92927              
+Total      14  11985.9 1.00000              
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+

@@ -1,0 +1,6 @@
+# A tibble: 3 × 6
+  AgeRange  count  mean    sd median   IQR
+  <chr>     <int> <dbl> <dbl>  <dbl> <dbl>
+1 ADULT         5 50.1   6.13   50    5.1 
+2 JUVENILE      9  7.24  4.74    5.4  8.85
+3 SUB-ADULT     4 27.4   5.56   28.8  7   
