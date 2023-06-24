@@ -1610,6 +1610,20 @@ ggsave("r_output/16S_endo_v34/fig2_pub.pdf",
        width = 220,
        units = "mm")
 
+pubfig_endo_2 <- faith_alpha_rain_pub+shannon_alpha_rain_pub +
+  pears_faith_clo_pub + rPCA1_plot22 + 
+  plot_layout(design = "
+                       ABDDD
+                       CCDDD
+                       ")
+
+ggsave("r_output/16S_endo_v34/fig2_pub_faith.pdf",
+       plot = pubfig_endo_2,
+       device=cairo_pdf,
+       height = 120,
+       width = 220,
+       units = "mm")
+
 #----- Session info -----
 sessioninfo <- sessionInfo()
 capture.output(sessioninfo, file = "r_output/16S_endo_v34/sessioninfo.txt")
