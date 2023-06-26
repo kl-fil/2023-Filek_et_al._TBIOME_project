@@ -317,8 +317,8 @@ summary_stats_alpha_v4[["Faith PD"]] <- faith_summarystats_v4
 summary_stats_alpha_v4[["Shannon entropy"]] <- shannon_summarystats_v4
 summary_stats_alpha_v4[["Pielou evenness"]] <- evenness_summarystats_v4
 
-write_tsv(do.call(cbind, summary_stats_alpha_v34), "r_output/16S_epi_v4_merged/alpha_diversity_summary_stats.tsv")
-capture.output(summary_stats_alpha_v34, file = "r_output/16S_epi_v4_merged/alpha_diversity_summary_stats.txt")
+write_tsv(do.call(cbind, summary_stats_alpha_v4), "r_output/16S_epi_v4_merged/alpha_diversity_summary_stats.tsv")
+capture.output(summary_stats_alpha_v4, file = "r_output/16S_epi_v4_merged/alpha_diversity_summary_stats.txt")
 
 ##---- Kruskall-Wallis test & pairwise comparisons (Wilcox)
 krustats_obs_v4 <- list()
