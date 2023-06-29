@@ -12,8 +12,7 @@ library(ggrepel) #repel text/labels v0.9.3
 library(ggforce) #v0.4.1
 library(ggtext) #v0.1.2
 library(vegan) #v2.6-4
-library(pairwiseAdonis) #
-library(patchwork)
+library(patchwork) #collect multiple ggplots together v1.1.2
 
 #colors
 c("#93624d", "#89d6dc")

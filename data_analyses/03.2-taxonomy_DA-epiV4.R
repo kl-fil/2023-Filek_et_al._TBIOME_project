@@ -4,17 +4,15 @@
 ## Author: Klara Filek
 
 ##--------------------load packages--------------------
-library(tidyverse)
-library(ggplot2)
-library(qiime2R)
-library(ANCOMBC)
-library(tidyverse)
-library(phyloseq)
-library(ggtext)
-library(qiime2R)
-library(pheatmap)
-library(compositions)
-library(RColorBrewer)
+library(tidyverse) #v2.0.0
+library(ggplot2) #v3.4.2
+library(qiime2R) #qiime to R import qza v0.99.6
+library(ANCOMBC) #v2.2.0
+library(phyloseq) #v1.44.0
+library(ggtext) #v0.1.2
+library(pheatmap) #v1.0.12
+library(compositions) #v2.0.6
+library(RColorBrewer) #v1.1.3
 
 #set global theme for ggplot
 theme_set(theme_light(base_size = 11, base_family = "Arial")) #<< font!
@@ -330,3 +328,91 @@ ggsave("r_output/16S_epi_v4_merged/clr_ancom-lvl7-heatmap.pdf",
        width = 320,
        units = "mm")
  
+#-----
+# filter clr transformed taxa counts to features detected as differentially abundant across sample sites by ANCOM-BC2
+filtered_clr_taxa7_no_t1 <- clr_taxa7_no_t %>%
+  filter(row.names(clr_taxa7_no_t) %in% c("d__Bacteria.__.__.__.__.__.__",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Bacteroidales.__.__.__",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Bacteroidales.f__Bacteroidaceae.g__Bacteroides.__",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Bacteroidales.f__Marinifilaceae.g__Marinifilum.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Bacteroidales.f__Rikenellaceae.g__Rikenellaceae_RC9_gut_group.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Cytophagales.f__Cyclobacteriaceae.g__Ekhidna.s__Ekhidna_sp.",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Cytophagales.f__Cyclobacteriaceae.g__uncultured.__",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Cytophagales.f__Cyclobacteriaceae.g__uncultured.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Flavobacteriales.f__Cryomorphaceae.g__uncultured.__",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Flavobacteriales.f__Flavobacteriaceae.g__Algitalea.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Flavobacteriales.f__Flavobacteriaceae.g__Maritimimonas.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Flavobacteriales.f__Flavobacteriaceae.g__NS3a_marine_group.__",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Flavobacteriales.f__Flavobacteriaceae.g__Pseudofulvibacter.__",
+                                          "d__Bacteria.p__Bacteroidota.c__Bacteroidia.o__Flavobacteriales.f__Flavobacteriaceae.g__Tenacibaculum.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Bacteroidota.c__Rhodothermia.o__Balneolales.f__Balneolaceae.g__Balneola.__",
+                                          "d__Bacteria.p__Campilobacterota.c__Campylobacteria.o__Campylobacterales.f__Campylobacteraceae.g__Campylobacter.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Cyanobacteria.c__Cyanobacteriia.o__Phormidesmiales.f__Phormidesmiaceae.g__Acrophormium_PCC.7375.s__Leptolyngbya_sp.",
+                                          "d__Bacteria.p__Deinococcota.c__Deinococci.o__Deinococcales.f__Trueperaceae.g__Truepera.s__uncultured_organism",
+                                          "d__Bacteria.p__Dependentiae.c__Babeliae.o__Babeliales.__.__.__",
+                                          "d__Bacteria.p__Dependentiae.c__Babeliae.o__Babeliales.f__Babeliales.g__Babeliales.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Patescibacteria.c__Gracilibacteria.o__Absconditabacteriales_.SR1..f__Absconditabacteriales_.SR1..g__Absconditabacteriales_.SR1..s__uncultured_bacterium",
+                                          "d__Bacteria.p__Patescibacteria.c__Saccharimonadia.o__Saccharimonadales.f__Saccharimonadales.g__Saccharimonadales.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Planctomycetota.c__Planctomycetes.o__Pirellulales.f__Pirellulaceae.g__Blastopirellula.__",
+                                          "d__Bacteria.p__Planctomycetota.c__Planctomycetes.o__Pirellulales.f__Pirellulaceae.g__Pir4_lineage.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Planctomycetota.c__Planctomycetes.o__Pirellulales.f__Pirellulaceae.g__Rhodopirellula.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.__.__.__.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Caulobacterales.f__Hyphomonadaceae.__.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Caulobacterales.f__Hyphomonadaceae.g__Litorimonas.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Kordiimonadales.f__Kordiimonadaceae.g__Kordiimonas.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Micavibrionales.f__Micavibrionaceae.g__uncultured.s__uncultured_organism",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Rhizobiales.f__Rhizobiaceae.__.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Rhizobiales.f__Rhizobiaceae.g__Ahrensia.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Rhizobiales.f__Stappiaceae.g__Labrenzia.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Rhodospirillales.f__Thalassospiraceae.g__Thalassospira.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Sphingomonadales.f__Sphingomonadaceae.__.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Sphingomonadales.f__Sphingomonadaceae.g__Altererythrobacter.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Sphingomonadales.f__Sphingomonadaceae.g__Erythrobacter.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Sphingomonadales.f__Sphingomonadaceae.g__Erythrobacter.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria.o__Sphingomonadales.f__Sphingomonadaceae.g__Sphingomonas.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Alteromonadales.f__Alteromonadaceae.__.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Alteromonadales.f__Alteromonadaceae.g__Alteromonas.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Alteromonadales.f__Alteromonadaceae.g__Glaciecola.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Alteromonadales.f__Colwelliaceae.g__Thalassotalea.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Alteromonadales.f__Pseudoalteromonadaceae.g__Pseudoalteromonas.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Alteromonadales.f__Shewanellaceae.g__Shewanella.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Cardiobacteriales.f__Cardiobacteriaceae.g__Cardiobacterium.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Cardiobacteriales.f__Cardiobacteriaceae.g__uncultured.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Cellvibrionales.f__Cellvibrionaceae.g__Aestuariicella.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Cellvibrionales.f__Halieaceae.__.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Cellvibrionales.f__Halieaceae.g__Halioglobus.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Cellvibrionales.f__Spongiibacteraceae.__.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Coxiellales.f__Coxiellaceae.g__Coxiella.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Oceanospirillales.f__Marinomonadaceae.g__Marinomonas.s__uncultured_marine",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Oceanospirillales.f__Nitrincolaceae.g__uncultured.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Oceanospirillales.f__Oleiphilaceae.g__Oleiphilus.__",
+                                          "d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria.o__Pseudomonadales.f__Moraxellaceae.g__uncultured.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Verrucomicrobiota.c__Kiritimatiellae.o__WCHB1.41.f__WCHB1.41.g__WCHB1.41.s__uncultured_bacterium",
+                                          "d__Bacteria.p__Verrucomicrobiota.c__Verrucomicrobiae.o__Opitutales.f__Puniceicoccaceae.g__Lentimonas.s__uncultured_bacterium"))
+
+# determine maximum clr value for heatmap legend
+rg1 <- max(abs(filtered_clr_taxa7_no_t1))
+
+# produce heatmap
+clr7_ancombc_heatmap2 <- 
+  pheatmap(mat = filtered_clr_taxa7_no_t1,
+           show_colnames = TRUE,
+           show_rownames = TRUE,
+           cluster_rows = TRUE,
+           cutree_cols = 7,
+           cutree_rows = 12,
+           #cutree_rows = 10,
+           clustering_method = "complete",
+           annotation_col = heatmap_df %>%
+             select(c("SampleSite")),
+           color = colorRampPalette(rev(brewer.pal(n = 7, name =
+                                                     "PRGn")))(100),
+           breaks = seq(-rg1, rg1, length.out = 100),
+           fontsize = 8,
+           cellwidth = 8,
+           cellheight = 8,
+           annotation_colors = list(
+             SampleSite = c(CARAPACE = "#3BB848",
+                            CLOACA = "#93624d",
+                            ORAL = "#ff9999",
+                            "TANK WATER" = "#89d6dc")))

@@ -4,14 +4,12 @@
 ## Author: Klara Filek
 
 ##--------------------load packages--------------------
-library(tidyverse)
-library(ggplot2)
-library(qiime2R)
-library(ANCOMBC)
-library(tidyverse)
-library(phyloseq)
-library(ggtext)
-library(qiime2R)
+library(tidyverse) #v2.0.0
+library(ggplot2) #v3.4.2
+library(qiime2R) #qiime to R import qza v0.99.6
+library(ANCOMBC) #v2.2.0
+library(phyloseq) #v1.44.0
+library(ggtext) #v0.1.2
 
 #set global theme for ggplot
 theme_set(theme_light(base_size = 11, base_family = "Arial")) #<< font!
