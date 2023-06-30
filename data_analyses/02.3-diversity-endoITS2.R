@@ -16,7 +16,7 @@ library(ggdendro) #v0.1.23
 library(pairwiseAdonis) # ???
 library(ggpubr) #0.6.0
 library(pheatmap) #1.0.12
-library(ggdist) #
+library(ggdist) #v3.3.0
 
 #set global theme for ggplot
 theme_set(theme_light(base_size = 11, base_family = "Arial")) #<< font!

@@ -2,12 +2,12 @@
 ## Author: Klara Filek based on code provided by L. Kanjer
 
 ##--------------------load packages--------------------
-library(maps)
-library(mapdata)
-library(tidyverse)
-library(ggplot2)
-library(ggrepel)
-library(ggtext)
+library(maps) #v3.4.1
+library(mapdata) #v2.3.1
+library(tidyverse) #v2.0.0
+library(ggplot2) #v3.4.2
+library(ggrepel) #v0.9.3
+library(ggtext) #v0.1.2
 
 #------ Adriatic Sea maps -----
 map(col="grey90", border = "grey40", fill = TRUE,
