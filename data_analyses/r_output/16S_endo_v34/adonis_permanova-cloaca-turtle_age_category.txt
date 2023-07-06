@@ -1,0 +1,201 @@
+$`Bray-Curtis ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = bray_dist_data_clo_v34 ~ AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
+         Df SumOfSqs      R2      F Pr(>F)  
+AgeRange  2   1.1220 0.14361 1.3415  0.021 *
+Residual 16   6.6912 0.85639                
+Total    18   7.8133 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`Bray-Curtis Pairwise`
+$parent_call
+[1] "bray_dist_data_clo_v34 ~ AgeRange , strata = Null , permutations 999"
+
+$`SUB-ADULT_vs_ADULT`
+         Df SumOfSqs      R2      F Pr(>F)
+AgeRange  1   0.5524 0.14233 1.3276  0.135
+Residual  8   3.3288 0.85767              
+Total     9   3.8813 1.00000              
+
+$`SUB-ADULT_vs_JUVENILE`
+         Df SumOfSqs     R2      F Pr(>F)
+AgeRange  1   0.4420 0.0854 1.0271  0.397
+Residual 11   4.7337 0.9146              
+Total    12   5.1757 1.0000              
+
+$ADULT_vs_JUVENILE
+         Df SumOfSqs      R2     F Pr(>F)   
+AgeRange  1   0.6699 0.11184 1.637  0.009 **
+Residual 13   5.3199 0.88816                
+Total    14   5.9898 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`Jaccard ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = jacc_dist_data_clo_v34 ~ AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
+         Df SumOfSqs      R2      F Pr(>F)  
+AgeRange  2   1.0389 0.13058 1.2016  0.028 *
+Residual 16   6.9171 0.86942                
+Total    18   7.9561 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`Jaccard Pairwise`
+$parent_call
+[1] "jacc_dist_data_clo_v34 ~ AgeRange , strata = Null , permutations 999"
+
+$`SUB-ADULT_vs_ADULT`
+         Df SumOfSqs      R2      F Pr(>F)
+AgeRange  1   0.4754 0.11929 1.0836  0.291
+Residual  8   3.5096 0.88071              
+Total     9   3.9849 1.00000              
+
+$`SUB-ADULT_vs_JUVENILE`
+         Df SumOfSqs      R2      F Pr(>F)
+AgeRange  1   0.4415 0.08461 1.0167  0.388
+Residual 11   4.7765 0.91539              
+Total    12   5.2179 1.00000              
+
+$ADULT_vs_JUVENILE
+         Df SumOfSqs      R2      F Pr(>F)   
+AgeRange  1   0.6164 0.09999 1.4444   0.01 **
+Residual 13   5.5483 0.90001                 
+Total    14   6.1647 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`unw. UniFrac ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = uunif_dist_data_clo_v34 ~ AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
+         Df SumOfSqs      R2      F Pr(>F)  
+AgeRange  2   0.7858 0.15532 1.4711  0.023 *
+Residual 16   4.2736 0.84468                
+Total    18   5.0595 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$`unw. UniFrac Pairwise`
+$parent_call
+[1] "uunif_dist_data_clo_v34 ~ AgeRange , strata = Null , permutations 999"
+
+$`SUB-ADULT_vs_ADULT`
+         Df SumOfSqs      R2     F Pr(>F)
+AgeRange  1  0.35439 0.13876 1.289  0.125
+Residual  8  2.19948 0.86124             
+Total     9  2.55386 1.00000             
+
+$`SUB-ADULT_vs_JUVENILE`
+         Df SumOfSqs      R2      F Pr(>F)
+AgeRange  1   0.2396 0.07224 0.8565  0.683
+Residual 11   3.0770 0.92776              
+Total    12   3.3166 1.00000              
+
+$ADULT_vs_JUVENILE
+         Df SumOfSqs      R2     F Pr(>F)   
+AgeRange  1   0.5515 0.14429 2.192  0.006 **
+Residual 13   3.2707 0.85571                
+Total    14   3.8222 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`w. UniFrac ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = wunif_dist_data_clo_v34 ~ AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
+         Df SumOfSqs      R2      F Pr(>F)
+AgeRange  2  0.35179 0.14931 1.4041   0.12
+Residual 16  2.00432 0.85069              
+Total    18  2.35610 1.00000              
+
+$`w. UniFrac Pairwise`
+$parent_call
+[1] "wunif_dist_data_clo_v34 ~ AgeRange , strata = Null , permutations 999"
+
+$`SUB-ADULT_vs_ADULT`
+         Df SumOfSqs      R2      F Pr(>F)
+AgeRange  1  0.18736 0.11408 1.0301    0.4
+Residual  8  1.45504 0.88592              
+Total     9  1.64240 1.00000              
+
+$`SUB-ADULT_vs_JUVENILE`
+         Df SumOfSqs      R2      F Pr(>F)
+AgeRange  1  0.15612 0.10315 1.2652  0.258
+Residual 11  1.35732 0.89685              
+Total    12  1.51344 1.00000              
+
+$ADULT_vs_JUVENILE
+         Df SumOfSqs      R2      F Pr(>F)  
+AgeRange  1  0.18539 0.13418 2.0146  0.065 .
+Residual 13  1.19626 0.86582                
+Total    14  1.38165 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
+$`r. Aitchison ADONIS`
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = clo_raitch_dist_v34 ~ AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
+         Df SumOfSqs      R2      F Pr(>F)
+AgeRange  2     2071 0.11897 1.0803  0.163
+Residual 16    15337 0.88103              
+Total    18    17408 1.00000              
+
+$`r. Aitchison Pairwise`
+$parent_call
+[1] "clo_raitch_dist_v34 ~ AgeRange , strata = Null , permutations 999"
+
+$`SUB-ADULT_vs_ADULT`
+         Df SumOfSqs     R2      F Pr(>F)
+AgeRange  1    882.6 0.1218 1.1096  0.198
+Residual  8   6363.9 0.8782              
+Total     9   7246.5 1.0000              
+
+$`SUB-ADULT_vs_JUVENILE`
+         Df SumOfSqs      R2      F Pr(>F)
+AgeRange  1    907.9 0.07373 0.8755   0.84
+Residual 11  11406.6 0.92627              
+Total    12  12314.5 1.00000              
+
+$ADULT_vs_JUVENILE
+         Df SumOfSqs      R2      F Pr(>F)  
+AgeRange  1     1248 0.08819 1.2574   0.02 *
+Residual 13    12903 0.91181                
+Total    14    14151 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+attr(,"class")
+[1] "pwadstrata" "list"      
+
