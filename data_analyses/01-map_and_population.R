@@ -96,6 +96,8 @@ theme_pop <- theme(
 #pop_ccl_weight_summary <-
 turtle_meta %>%
   ggplot(aes(x = CCL, y = Weight, fill = AgeRange, shape = TurtleSex)) + 
+  geom_vline(xintercept = 60, linetype = 2, linewidth = 0.3, color = "grey50") +
+  geom_vline(xintercept = 70, linetype = 2, linewidth = 0.3, color = "grey50") +
   geom_point(size = 2,
              alpha = 0.8) +
   scale_shape_manual(values = c(24, 22, 21),

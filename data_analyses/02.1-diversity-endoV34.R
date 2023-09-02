@@ -389,7 +389,7 @@ kruskall_cloaca[["Evenness-TurtleSex"]] <- kruskal.test(pielou_evenness ~ Turtle
 kruskall_cloaca[["Evenness-DetSex"]] <- kruskal.test(pielou_evenness ~ DetSex, 
                                                        data = alpha_values_meta %>%
                                                          filter(SampleSite == "CLOACA"))
-kruskall_cloaca[["Faith's PD-AgeRange"]] <- kruskal.test(pielou_evenness ~ AgeRange, 
+kruskall_cloaca[["Evenness-AgeRange"]] <- kruskal.test(pielou_evenness ~ AgeRange, 
                                                          data = alpha_values_meta %>%
                                                            filter(SampleSite == "CLOACA"))
 kruskall_cloaca[["Evenness-Age2"]] <- kruskal.test(pielou_evenness ~ Age2, 
@@ -453,7 +453,7 @@ kruskall_oral[["Evenness-TurtleSex"]] <- kruskal.test(pielou_evenness ~ TurtleSe
 kruskall_oral[["Evenness-DetSex"]] <- kruskal.test(pielou_evenness ~ DetSex, 
                                                      data = alpha_values_meta %>%
                                                        filter(SampleSite == "ORAL"))
-kruskall_oral[["Faith's PD-AgeRange"]] <- kruskal.test(pielou_evenness ~ AgeRange, 
+kruskall_oral[["Evenness-AgeRange"]] <- kruskal.test(pielou_evenness ~ AgeRange, 
                                                          data = alpha_values_meta %>%
                                                            filter(SampleSite == "ORAL"))
 kruskall_oral[["Evenness-Age2"]] <- kruskal.test(pielou_evenness ~ Age2, 
@@ -517,7 +517,7 @@ kruskall_wtr[["Evenness-TurtleSex"]] <- kruskal.test(pielou_evenness ~ TurtleSex
 kruskall_wtr[["Evenness-DetSex"]] <- kruskal.test(pielou_evenness ~ DetSex, 
                                                    data = alpha_values_meta %>%
                                                      filter(SampleSite == "TANK WATER"))
-kruskall_wtr[["Faith's PD-AgeRange"]] <- kruskal.test(pielou_evenness ~ AgeRange, 
+kruskall_wtr[["Evenness-AgeRange"]] <- kruskal.test(pielou_evenness ~ AgeRange, 
                                                        data = alpha_values_meta %>%
                                                          filter(SampleSite == "TANK WATER"))
 kruskall_wtr[["Evenness-Age2"]] <- kruskal.test(pielou_evenness ~ Age2, 
@@ -1288,7 +1288,7 @@ clo_table_v34 <- read_qza("qiime2_output/16S_endo_v34_2021/filtered/16Sendov34-t
 clo_counts_v34 <- t(clo_table_v34$data)
 clo_raitch_dist_v34 <- vegdist(clo_counts_v34, method = "robust.aitchison")
 
-# distances and metadata need to be sorted in the same way (in this cae alphabetically)
+# distances and metadata need to be sorted in the same way (in this case alphabetically)
 adonis_metadata_clo <- adonis_metadata_clo[order(adonis_metadata_clo$SampleID),]
 
 adonis_results_v34_clo <- list()
@@ -1305,17 +1305,17 @@ adonis_results_v34_clo[["r. Aitchison Pairwise"]] <- pairwiseAdonis::pairwise.ad
 capture.output(adonis_results_v34_clo, file = "r_output/16S_endo_v34/adonis_permanova-cloaca-turtle_sex_category.txt")
 
 adonis_results_v34_clo_age <- list()
-adonis_results_v34_clo[["Bray-Curtis ADONIS"]] <- adonis2(formula = bray_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
-adonis_results_v34_clo[["Bray-Curtis Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(bray_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999)
-adonis_results_v34_clo[["Jaccard ADONIS"]] <- adonis2(formula = jacc_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
-adonis_results_v34_clo[["Jaccard Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(jacc_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999)
-adonis_results_v34_clo[["unw. UniFrac ADONIS"]] <- adonis2(formula = uunif_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
-adonis_results_v34_clo[["unw. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(uunif_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999)
-adonis_results_v34_clo[["w. UniFrac ADONIS"]] <- adonis2(formula = wunif_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
-adonis_results_v34_clo[["w. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(wunif_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999)
-adonis_results_v34_clo[["r. Aitchison ADONIS"]] <- adonis2(formula = clo_raitch_dist_v34~AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
-adonis_results_v34_clo[["r. Aitchison Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(clo_raitch_dist_v34~AgeRange, data = adonis_metadata_clo, permutations = 999)
-capture.output(adonis_results_v34_clo, file = "r_output/16S_endo_v34/adonis_permanova-cloaca-turtle_age_category.txt")
+adonis_results_v34_clo_age[["Bray-Curtis ADONIS"]] <- adonis2(formula = bray_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo_age[["Bray-Curtis Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(bray_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo_age[["Jaccard ADONIS"]] <- adonis2(formula = jacc_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo_age[["Jaccard Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(jacc_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo_age[["unw. UniFrac ADONIS"]] <- adonis2(formula = uunif_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo_age[["unw. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(uunif_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo_age[["w. UniFrac ADONIS"]] <- adonis2(formula = wunif_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo_age[["w. UniFrac Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(wunif_dist_data_clo_v34~AgeRange, data = adonis_metadata_clo, permutations = 999)
+adonis_results_v34_clo_age[["r. Aitchison ADONIS"]] <- adonis2(formula = clo_raitch_dist_v34~AgeRange, data = adonis_metadata_clo, permutations = 999, by = "terms")
+adonis_results_v34_clo_age[["r. Aitchison Pairwise"]] <- pairwiseAdonis::pairwise.adonis2(clo_raitch_dist_v34~AgeRange, data = adonis_metadata_clo, permutations = 999)
+capture.output(adonis_results_v34_clo_age, file = "r_output/16S_endo_v34/adonis_permanova-cloaca-turtle_age_category.txt")
 
 adonis_results_v34_clo_hosp <- list()
 adonis_results_v34_clo_hosp[["Bray-Curtis ADONIS"]] <- adonis2(formula = bray_dist_data_clo_v34~HospStatus, data = adonis_metadata_clo, permutations = 999, by = "terms")
@@ -1509,6 +1509,7 @@ pears_faith_clo_pub <- alpha_values_meta %>%
   labs(x = "CCL (cm)",
        y = "Faith's PD",
        tag = "c)") +
+  scale_x_continuous(breaks = c(30, 40, 50, 60, 70, 80)) +
   theme_alpha_pub + 
   theme(panel.grid.major.x = element_line())
 

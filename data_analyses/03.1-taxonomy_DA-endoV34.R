@@ -664,7 +664,643 @@ ggsave("r_output/16S_endo_v34/barchart_fusobacteriota.pdf",
        width = 220,
        units = "mm")
 
+# Taxa bar plots for cloaca by age range
+###
+metadata_endov34$AgeRange_F <- factor(metadata_endov34$AgeRange, levels = c("JUVENILE", "SUB-ADULT", "ADULT"))
 
+taxaplot_2_v34_cloage <- 
+  taxadata_2_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  select(-which(names(.) %in% names(which(apply(., 2, max) <= 0.05)))) %>% #select taxa above a percentage / remove taxa below percentage
+  mutate(Other = 1 - rowSums(.)) %>% #add row with other as 1- sum of abundances
+  rename_with(~ gsub("d__Bacteria.p__", " ", .x)) %>%
+  t() %>% #transpose
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%  
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Phyla (> 5%)", palette = "Paired") +
+  scale_y_continuous(breaks = c(0, 0.25, .50, .75, 1), 
+                     labels = function(x) x*100, expand = c(0, 0), 
+                     limits = c(0, 1)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts
+
+#test treba ti cummulative juv sub i adult
+taxadata_2_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  select(-which(names(.) %in% names(which(apply(., 2, max) <= 0.05)))) %>% #select taxa above a percentage / remove taxa below percentage
+  mutate(Other = 1 - rowSums(.)) %>% #add row with other as 1- sum of abundances
+  rename_with(~ gsub("d__Bacteria.p__", " ", .x)) %>%
+  t() %>% #transpose
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%  
+  ggplot(aes(x = AgeRange_F, y = abundance)) +
+  #facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Phyla (> 5%)", palette = "Paired") +
+  scale_y_continuous(breaks = c(0, 0.25, .50, .75, 1), 
+                     labels = function(x) x*100, expand = c(0, 0), 
+                     limits = c(0, 1)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts
+taxaplot_plancto_cloage <-
+  taxadata_5_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  select(-which(names(.) %in% names(which(apply(., 2, max) < 0.001)))) %>% #select taxa above a percentage / remove taxa below percentage
+  #mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Planctomycetota")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Planctomycetota.c__", "", .x)) %>%
+  rename_with(~ gsub("028H05.P.BN.P5.o__028H05.P.BN.P5.f__", "", .x)) %>%
+  rename_with(~ gsub("OM190.o__OM190.f__", "", .x)) %>%
+  rename_with(~ gsub("Phycisphaerae.o__Phycisphaerales.f__Phycisphaeraceae",
+                     "order Phycisphaerales;  
+                     family *Phycisphaeraceae*", .x)) %>%
+  rename_with(~ gsub("Planctomycetes.o__",
+                     "order ", .x)) %>%
+  rename_with(~ gsub("Gemmatales.f__Gemmataceae",
+                     "Gemmatales;  
+                     family *Gemmataceae*", .x)) %>%
+  rename_with(~ gsub("Pirellulales.f__Pirellulaceae",
+                     "Pirellulales;  
+                     family *Pirellulaceae*", .x)) %>%
+  rename_with(~ gsub("Planctomycetales.f__Rubinisphaeraceae",
+                     "Planctomycetales;  
+                     family *Rubinisphaeraceae*", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  #mutate(SamplePlotName = fct_relevel(SamplePlotName, guni_d_order_labels_ms_dm)) %>%
+  #mutate(ExpGen = paste(TypeExp, Genus, sep = "_")) %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Planctomycetota <0.1%", palette = "Paired") +
+  # scale_fill_manual(name = "Alphaproteobacteria (> 5%)", values = c("#A6CEE3", "#1F78B4",                                                                                #                                                                    "#B2DF8A", "#33A02C",
+  #                                                                   "#FB9A99", "#E31A1C", 
+  #                                                                   "#FDBF6F", "#FF7F00",
+  #                                                                   "#CAB2D6", "#6A3D9A",
+  #                                                                   "#FFFF99", "#B15928",
+  #                                                                   "#A6CEE3", "#1F78B4",
+  #                                                                   "#B2DF8A", "#E31A1C", 
+  #                                                                   "#FDBF6F", "#111111")) +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.04)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_alpha_cloage <-
+  taxadata_4_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  select(-which(names(.) %in% names(which(apply(., 2, max) < 0.01)))) %>% #select taxa above a percentage / remove taxa below percentage
+  #mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Alphaproteobacteria")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Proteobacteria.c__Alphaproteobacteria", "", .x)) %>%
+  rename_with(~ gsub(".o__", "", .x)) %>%
+  # rename_with(~ gsub("Gammaproteobacteria_Incertae_Sedis", "Incertae Sedis", .x)) %>%
+  # rename_with(~ gsub(".__", " unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  #scale_fill_brewer(name = "Gammaproteobacteria", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.4)) + #set scale size #<<
+  scale_fill_manual(name = "Alphaproteobacteria <1%",
+                    values = c("#A6CEE3", "#1F78B4",
+                               "#B2DF8A", "#33A02C",
+                               "#FB9A99", "#E31A1C",
+                               "#FDBF6F", "#FF7F00",
+                               "#CAB2D6", "#6A3D9A",
+                               "#FFFF99", "#B15928",
+                               "#A6CEE3", "#1F78B4",
+                               "#B2DF8A", "#E31A1C",
+                               "#FDBF6F", "#111111",
+                               "grey"
+                    )) +
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_gamma_cloage <-
+  taxadata_4_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  select(-which(names(.) %in% names(which(apply(., 2, max) < 0.05)))) %>% #select taxa above a percentage / remove taxa below percentage
+  #mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Gammaproteobacteria")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Proteobacteria.c__Gammaproteobacteria", "", .x)) %>%
+  rename_with(~ gsub(".o__", "", .x)) %>%
+  rename_with(~ gsub("Gammaproteobacteria_Incertae_Sedis", "Incertae Sedis", .x)) %>%
+  rename_with(~ gsub(".__", " unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  #scale_fill_brewer(name = "Gammaproteobacteria", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.8)) + #set scale size #<<
+  scale_fill_manual(name = "Gammaproteobacteria <5%",
+                    values = c("#A6CEE3", "#1F78B4",
+                               "#B2DF8A", "#33A02C",
+                               "#FB9A99", "#E31A1C",
+                               "#FDBF6F", "#FF7F00",
+                               "#CAB2D6", "#6A3D9A",
+                               "#FFFF99", "#B15928",
+                               "#A6CEE3", "#1F78B4",
+                               "#B2DF8A", "#E31A1C",
+                               "#FDBF6F", "#111111",
+                               "grey"
+                    )) +
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_firmicutes_cloage <-
+  taxadata_4_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  select(-which(names(.) %in% names(which(apply(., 2, max) < 0.01)))) %>% #select taxa above a percentage / remove taxa below percentage
+  #mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Firmicutes")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Firmicutes.c__", "", .x)) %>%
+  rename_with(~ gsub(".o__", "; ", .x)) %>%
+  #rename_with(~ gsub(".__", "unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Firmicutes <1%", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.4)) + #set scale size #<<
+  # scale_fill_manual(name = "Gammaproteobacteria",
+  #                   values = c("#A6CEE3", "#1F78B4",
+  #                              "#B2DF8A", "#33A02C",
+  #                              "#FB9A99", "#E31A1C",
+  #                              "#FDBF6F", "#FF7F00",
+  #                              "#CAB2D6", "#6A3D9A",
+  #                              "#FFFF99", "#B15928",
+  #                              "#A6CEE3", "#1F78B4",
+  #                              "#B2DF8A", "#E31A1C",
+  #                              "#FDBF6F", "#111111",
+  #                              #"#B2DF8A", "#33A02C",
+#                              "grey"
+#                   )) +
+labs(
+  x = "Sample ID",
+  y = "Relative abundance (%)"
+) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_patescibacteria_cloage <-
+  taxadata_4_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  select(-which(names(.) %in% names(which(apply(., 2, max) < 0.01)))) %>% #select taxa above a percentage / remove taxa below percentage
+  mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Patescibacteria")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Patescibacteria.c__", "", .x)) %>%
+  rename_with(~ gsub(".o__", "; ", .x)) %>%
+  #rename_with(~ gsub(".__", "unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Patescibacteria <1%", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.1)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_spirochaetota_cloage <-
+  taxadata_4_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  #select(-which(names(.) %in% names(which(apply(., 2, max) < 0.01)))) %>% #select taxa above a percentage / remove taxa below percentage
+  mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Spirochaetota")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Spirochaetota.c__", "", .x)) %>%
+  rename_with(~ gsub(".o__", "; ", .x)) %>%
+  #rename_with(~ gsub(".__", "unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Spirochaetota", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.1)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_verrucomicrobiota_cloage <-
+  taxadata_3_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  #select(-which(names(.) %in% names(which(apply(., 2, max) < 0.01)))) %>% #select taxa above a percentage / remove taxa below percentage
+  mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Verrucomicrobiota")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Verrucomicrobiota.c__", "", .x)) %>%
+  rename_with(~ gsub("d__Bacteria.p__Verrucomicrobiota.__", "Verrucomicrobiota unassigned", .x)) %>%
+  # rename_with(~ gsub(".o__", "", .x)) %>%
+  #rename_with(~ gsub(".__", "unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Verrucomicrobiota", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.1)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_actinobacteria_cloage <-
+  taxadata_4_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  select(-which(names(.) %in% names(which(apply(., 2, max) < 0.01)))) %>% #select taxa above a percentage / remove taxa below percentage
+  mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Actinobacteriota")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Actinobacteriota.c__", "", .x)) %>%
+  rename_with(~ gsub(".o__", "; ", .x)) %>%
+  rename_with(~ gsub(".__", " unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Actinobacteriota <1%", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.1)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_bacteroidota_cloage <-
+  taxadata_4_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  select(-which(names(.) %in% names(which(apply(., 2, max) < 0.01)))) %>% #select taxa above a percentage / remove taxa below percentage
+  mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Bacteroidota")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Bacteroidota.c__", "", .x)) %>%
+  rename_with(~ gsub(".o__", "; ", .x)) %>%
+  # rename_with(~ gsub(".__", " unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Bacteroidota", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 1)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_bdellovibrionota_cloage <-
+  taxadata_4_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  #select(-which(names(.) %in% names(which(apply(., 2, max) < 0.01)))) %>% #select taxa above a percentage / remove taxa below percentage
+  mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Bdellovibrionota")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Bdellovibrionota.c__", "", .x)) %>%
+  rename_with(~ gsub(".o__", "; ", .x)) %>%
+  # rename_with(~ gsub(".__", " unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Bdellovibrionota", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.15)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_campilobacterota_cloage <-
+  taxadata_5_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  #select(-which(names(.) %in% names(which(apply(., 2, max) < 0.01)))) %>% #select taxa above a percentage / remove taxa below percentage
+  mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Campilobacterota")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Campilobacterota.c__Campylobacteria", "", .x)) %>%
+  rename_with(~ gsub(".o__", "", .x)) %>%
+  rename_with(~ gsub(".f__", "; ", .x)) %>%
+  rename_with(~ gsub(".__", " unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Campylobacteria", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.25)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_cyanobacteria_cloage <-
+  taxadata_4_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  select(-which(names(.) %in% names(which(apply(., 2, max) < 0.01)))) %>% #select taxa above a percentage / remove taxa below percentage
+  mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Cyanobacteria")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Cyanobacteria.c__", "", .x)) %>%
+  rename_with(~ gsub(".o__", "; ", .x)) %>%
+  # rename_with(~ gsub(".f__", "; ", .x)) %>%
+  # rename_with(~ gsub(".__", " unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Cyanobacteria <1%", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.1)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+taxaplot_fusobacteriota_cloage <-
+  taxadata_5_endov34 %>% #<<
+  .[!(row.names(.) %in% removed_samples_v34),1:(ncol(.)-32)] %>% #remove metadata and samples with low reads <4500
+  "/"(rowSums(.)) %>% #calculate proportions (rel. abund.) 
+  select(-which(names(.) %in% names(which(apply(., 2, max) < 0.01)))) %>% #select taxa above a percentage / remove taxa below percentage
+  mutate(Other = 1 - rowSums(.)) %>% #select taxa above a percentage / remove taxa below percentage
+  select(contains("Fusobacteriota")) %>% #select specific taxa #<<
+  rename_with(~ gsub("d__Bacteria.p__Fusobacteriota.c__", "", .x)) %>%
+  rename_with(~ gsub(".o__", "; ", .x)) %>%
+  rename_with(~ gsub(".f__", "; ", .x)) %>%
+  # rename_with(~ gsub(".__", " unassigned", .x)) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "Taxa") %>%
+  pivot_longer(cols = contains(c("16S")), names_to = "SampleID", values_to = "abundance") %>% #<<
+  left_join(metadata_endov34) %>% #<<
+  filter(SampleSite == "CLOACA") %>%
+  ggplot(aes(x = SampleID, y = abundance)) +
+  facet_grid(cols = vars(AgeRange_F), scales = "free_x", space = "free_x") +
+  geom_bar(aes(fill = Taxa), position = "stack", stat = "identity", width = 0.8, color = "grey20", linewidth = 0.35) +
+  scale_fill_brewer(name = "Fusobacteriota <1%", palette = "Paired") +
+  scale_y_continuous(labels = function(x) x*100, 
+                     expand = c(0, 0), 
+                     limits = c(0, 0.15)) + #set scale size #<<
+  labs(
+    x = "Sample ID",
+    y = "Relative abundance (%)"
+  ) +
+  guides(fill = guide_legend(byrow = TRUE)) +
+  theme_barcharts +
+  theme(legend.text = element_markdown(),
+        legend.position = "bottom")
+
+ggsave("r_output/16S_endo_v34/barchart_phyla_cloage.pdf",
+       plot = taxaplot_2_v34_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 220,
+       units = "mm")
+
+ggsave("r_output/16S_endo_v34/barchart_planctomycetota_cloage.pdf",
+       plot = taxaplot_plancto_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 220,
+       units = "mm")
+
+ggsave("r_output/16S_endo_v34/barchart_gammaproteobacteria_cloage.pdf",
+       plot = taxaplot_gamma_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 220,
+       units = "mm")
+ggsave("r_output/16S_endo_v34/barchart_alphaproteobacteria_cloage.pdf",
+       plot = taxaplot_alpha_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 220,
+       units = "mm")
+ggsave("r_output/16S_endo_v34/barchart_firmicutes_cloage.pdf",
+       plot = taxaplot_firmicutes_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 300,
+       units = "mm")
+
+ggsave("r_output/16S_endo_v34/barchart_patescibacteria_cloage.pdf",
+       plot = taxaplot_patescibacteria_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 300,
+       units = "mm")
+
+ggsave("r_output/16S_endo_v34/barchart_spirochaetota_cloage.pdf",
+       plot = taxaplot_spirochaetota_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 220,
+       units = "mm")
+
+ggsave("r_output/16S_endo_v34/barchart_verrucomicrobiota_cloage.pdf",
+       plot = taxaplot_verrucomicrobiota_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 220,
+       units = "mm")
+
+ggsave("r_output/16S_endo_v34/barchart_actinobacteriota_cloage.pdf",
+       plot = taxaplot_actinobacteria_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 300,
+       units = "mm")
+
+ggsave("r_output/16S_endo_v34/barchart_bacteroidota_cloage.pdf",
+       plot = taxaplot_bacteroidota_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 300,
+       units = "mm")
+
+ggsave("r_output/16S_endo_v34/barchart_bdellovibrionota_cloage.pdf",
+       plot = taxaplot_bdellovibrionota_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 300,
+       units = "mm")
+
+ggsave("r_output/16S_endo_v34/barchart_campilobacterota_cloage.pdf",
+       plot = taxaplot_campilobacterota_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 300,
+       units = "mm")
+
+ggsave("r_output/16S_endo_v34/barchart_cyano_cloage.pdf",
+       plot = taxaplot_cyanobacteria_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 220,
+       units = "mm")
+
+ggsave("r_output/16S_endo_v34/barchart_fusobacteriota_cloage.pdf",
+       plot = taxaplot_fusobacteriota_cloage,
+       device = cairo_pdf,
+       height = 100,
+       width = 220,
+       units = "mm")
+
+###
 
 ##----- Differential abundance tests -----
 # ANCOM-BC2
