@@ -28,8 +28,8 @@ $`faithPD AgeRange`
 data:  alpha_values_meta_cloaca$faith_PD and alpha_values_meta_cloaca$AgeRange 
 
           ADULT JUVENILE
-JUVENILE  0.023 -       
-SUB-ADULT 0.386 1.000   
+JUVENILE  0.024 -       
+SUB-ADULT 0.730 0.282   
 
 P value adjustment method: BH 
 
@@ -40,7 +40,7 @@ $`faithPD Age2`
 data:  alpha_values_meta_cloaca$faith_PD and alpha_values_meta_cloaca$Age2 
 
           ADULT
-NON-ADULT 0.012
+NON-ADULT 0.034
 
 P value adjustment method: BH 
 
@@ -74,8 +74,8 @@ $`shannon AgeRange`
 data:  alpha_values_meta_cloaca$shannon_entropy and alpha_values_meta_cloaca$AgeRange 
 
           ADULT JUVENILE
-JUVENILE  0.053 -       
-SUB-ADULT 0.386 0.940   
+JUVENILE  0.084 -       
+SUB-ADULT 0.905 0.809   
 
 P value adjustment method: BH 
 
@@ -86,7 +86,7 @@ $`shannon Age2`
 data:  alpha_values_meta_cloaca$shannon_entropy and alpha_values_meta_cloaca$Age2 
 
           ADULT
-NON-ADULT 0.022
+NON-ADULT 0.087
 
 P value adjustment method: BH 
 
@@ -120,8 +120,8 @@ $`observed AgeRange`
 data:  alpha_values_meta_cloaca$observed_features and alpha_values_meta_cloaca$AgeRange 
 
           ADULT JUVENILE
-JUVENILE  0.014 -       
-SUB-ADULT 0.386 1.000   
+JUVENILE  0.024 -       
+SUB-ADULT 0.905 0.282   
 
 P value adjustment method: BH 
 
@@ -131,8 +131,8 @@ $`observed Age2`
 
 data:  alpha_values_meta_cloaca$observed_features and alpha_values_meta_cloaca$Age2 
 
-          ADULT 
-NON-ADULT 0.0092
+          ADULT
+NON-ADULT 0.044
 
 P value adjustment method: BH 
 

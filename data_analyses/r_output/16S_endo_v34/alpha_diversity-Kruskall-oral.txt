@@ -66,8 +66,8 @@ $`Faith's PD-AgeRange`
 
 	Kruskal-Wallis rank sum test
 
-data:  pielou_evenness by AgeRange
-Kruskal-Wallis chi-squared = 1.8695, df = 2, p-value = 0.3927
+data:  faith_PD by AgeRange
+Kruskal-Wallis chi-squared = 3.3088, df = 2, p-value = 0.1912
 
 
 $`Faith's PD-Age2`
@@ -140,6 +140,14 @@ $`Evenness-DetSex`
 
 data:  pielou_evenness by DetSex
 Kruskal-Wallis chi-squared = 0.15722, df = 1, p-value = 0.6917
+
+
+$`Evenness-AgeRange`
+
+	Kruskal-Wallis rank sum test
+
+data:  pielou_evenness by AgeRange
+Kruskal-Wallis chi-squared = 1.8695, df = 2, p-value = 0.3927
 
 
 $`Evenness-Age2`

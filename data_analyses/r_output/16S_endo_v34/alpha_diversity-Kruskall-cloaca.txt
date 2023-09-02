@@ -27,7 +27,7 @@ $`Observed features-AgeRange`
 	Kruskal-Wallis rank sum test
 
 data:  observed_features by AgeRange
-Kruskal-Wallis chi-squared = 6.5667, df = 2, p-value = 0.0375
+Kruskal-Wallis chi-squared = 6.7311, df = 2, p-value = 0.03454
 
 
 $`Observed features-Age2`
@@ -35,7 +35,7 @@ $`Observed features-Age2`
 	Kruskal-Wallis rank sum test
 
 data:  observed_features by Age2
-Kruskal-Wallis chi-squared = 6.4692, df = 1, p-value = 0.01098
+Kruskal-Wallis chi-squared = 4.1486, df = 1, p-value = 0.04167
 
 
 $`Faith's PD-HospStatus`
@@ -66,8 +66,8 @@ $`Faith's PD-AgeRange`
 
 	Kruskal-Wallis rank sum test
 
-data:  pielou_evenness by AgeRange
-Kruskal-Wallis chi-squared = 2.3851, df = 2, p-value = 0.3034
+data:  faith_PD by AgeRange
+Kruskal-Wallis chi-squared = 6.8811, df = 2, p-value = 0.03205
 
 
 $`Faith's PD-Age2`
@@ -75,7 +75,7 @@ $`Faith's PD-Age2`
 	Kruskal-Wallis rank sum test
 
 data:  faith_PD by Age2
-Kruskal-Wallis chi-squared = 6.0308, df = 1, p-value = 0.01406
+Kruskal-Wallis chi-squared = 4.5343, df = 1, p-value = 0.03322
 
 
 $`Shannon-HospStatus`
@@ -107,7 +107,7 @@ $`Shannon-AgeRange`
 	Kruskal-Wallis rank sum test
 
 data:  shannon_entropy by AgeRange
-Kruskal-Wallis chi-squared = 5.2114, df = 2, p-value = 0.07385
+Kruskal-Wallis chi-squared = 4.0768, df = 2, p-value = 0.1302
 
 
 $`Shannon-Age2`
@@ -115,7 +115,7 @@ $`Shannon-Age2`
 	Kruskal-Wallis rank sum test
 
 data:  shannon_entropy by Age2
-Kruskal-Wallis chi-squared = 5.2, df = 1, p-value = 0.02259
+Kruskal-Wallis chi-squared = 3.0943, df = 1, p-value = 0.07857
 
 
 $`Evenness-HospStatus`
@@ -142,11 +142,19 @@ data:  pielou_evenness by DetSex
 Kruskal-Wallis chi-squared = 1.9705, df = 1, p-value = 0.1604
 
 
+$`Evenness-AgeRange`
+
+	Kruskal-Wallis rank sum test
+
+data:  pielou_evenness by AgeRange
+Kruskal-Wallis chi-squared = 1.0879, df = 2, p-value = 0.5805
+
+
 $`Evenness-Age2`
 
 	Kruskal-Wallis rank sum test
 
 data:  pielou_evenness by Age2
-Kruskal-Wallis chi-squared = 2.2231, df = 1, p-value = 0.136
+Kruskal-Wallis chi-squared = 1.0371, df = 1, p-value = 0.3085
 
 
