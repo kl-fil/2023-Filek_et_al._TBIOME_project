@@ -130,18 +130,18 @@ qiime phylogeny align-to-tree-mafft-fasttree \
 
 qiime feature-classifier classify-sklearn \
   --i-classifier classifiers/unite_classifier_ver8_dynamic.qza \
-  --i-reads qiime2_output/rep-seqs-trimmed.qza \
-  --o-classification qiime2_output/taxonomy.qza
+  --i-reads qiime2_output/ITS2_analysis-outputs/rep-seqs-trimmed.qza \
+  --o-classification qiime2_output/ITS2_analysis-outputs/taxonomy.qza
 
 qiime metadata tabulate \
-  --m-input-file qiime2_output/taxonomy.qza \
-  --o-visualization qiime2_output/taxonomy.qzv
+  --m-input-file qiime2_output/ITS2_analysis-outputs/taxonomy.qza \
+  --o-visualization qiime2_output/ITS2_analysis-outputs/taxonomy.qzv
 
 qiime taxa barplot \
-  --i-table qiime2_output/table-trimmed.qza \
-  --i-taxonomy qiime2_output/taxonomy.qza \
-  --m-metadata-file qiime2_output/metadata-ITS-new.tsv \
-  --o-visualization qiime2_output/taxa-bar-plots.qzv
+  --i-table qiime2_output/ITS2_analysis-outputs/table-trimmed.qza \
+  --i-taxonomy qiime2_output/ITS2_analysis-outputs/taxonomy.qza \
+  --m-metadata-file qiime2_output/ITS2_analysis-outputs/metadata-ITS-new.tsv \
+  --o-visualization qiime2_output/ITS2_analysis-outputs/taxa-bar-plots.qzv
 
 #----- Alpha rarefaction to determine approapriate depth for downstream analyses
 
