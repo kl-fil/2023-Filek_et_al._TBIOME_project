@@ -5,6 +5,8 @@ Also relevant for preprint: Filek et al. 2024 "Bacterial and fungal assemblages 
 Supplementary materials, data, and code for data analyses and visualizations for Turtle BIOME project manuscript **"Loggerhead Sea Turtles as Hosts of Diverse Bacterial and Fungal Communities"** by Filek K, Vuković BB, Žižek M, Kanjer L, Trotta A, Di Bello A, Corrente M, Bosak S (2024) published in *Microbial Ecology*  
 doi: https://doi.org/10.1007/s00248-024-02388-x
 
+Sequencing data with non-biological sequences removed is available at EMBL ENA at accessions PRJEB62752 and PRJEB68298 for 16S rRNA gene and PRJEB62762 for ITS2 region sequences. Epizoic samples’ sequencing data obtained from Kanjer et al. (2022) and used in this study can be found at ENA under accession PRJEB51458. In the manuscript there is a wrong accession number listed: PRJEB68216 instead of the correct one **PRJEB68298**.
+
 The repo contains supplementary materials for the manuscript as well as data and code/scripts used for analyses and visualizations (in Qiime 2 and R). The code and all of the files (including classifiers and denoising files that were too large for GitHub) can be found on ZENODO as well under doi:10.5281/zenodo.8054926.  
   
 ## Manuscript abstract
